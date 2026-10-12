@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sameer Saifi — Web Developer &amp; CRO Expert</title>
+<meta name="description" content="Sameer Saifi — Shopify developer and CRO expert building fast, premium, high-converting stores and immersive websites.">
+<meta name="theme-color" content="#000000">
+<meta name="gallery-title" content="Sameer Saifi — Portfolio">
+<meta name="gallery-category" content="Portfolio, Interactive">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Colours taken from sameersaifi07.github.io: black, near-black cards, soft greys,
+   the white-to-silver name gradient, the dark-grey hero glow and the green "available" dot. */
+:root {
+  --bg: #000;
+  --card: #0A0A0A;
+  --card-2: #111;
+  --card-3: #161616;
+  --line: #1A1A1A;
+  --line-2: #262626;
+  --line-3: #333;
+  --text: #FFF;
+  --soft: #B5B5B5;
+  --muted: #8C8C8C;
+  --green: #22C55E;
+  --glow: #3E4142;
+  --silver: linear-gradient(180deg, #FFFFFF 30%, #9A9A9A 100%);
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --pad: clamp(18px, 4vw, 56px);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+body.locked { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 6px; }
+::selection { background: #fff; color: #000; }
+em.serif, .serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+.silver { background: var(--silver); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* Animated words carry their own gradient (a clipped parent can't paint moving children in Chrome) */
+.silver.words { background: none; color: #fff; }
+.silver.words .w > span { background: var(--silver); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mono { font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.mono b { color: #fff; font-weight: 500; }
+
+/* Buttons: white primary, glass secondary; magnetic on desktop; a sheen passes on hover */
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 999px; border: 0;
+  font-weight: 500; font-size: .96rem; cursor: pointer; overflow: hidden; isolation: isolate; transition: transform .35s var(--ease), background-color .25s, box-shadow .3s, color .25s; }
+.btn::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%); transform: translateX(-120%); }
+.btn:hover::after { transform: translateX(120%); transition: transform .8s var(--ease); }
+.btn-white { background: #fff; color: #000; }
+.btn-white:hover { box-shadow: 0 12px 34px -10px rgba(255,255,255,.35); }
+.btn-glass { background: rgba(255,255,255,.08); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.btn-glass:hover { background: rgba(255,255,255,.14); }
+.btn-dark { background: #000; color: #fff; box-shadow: inset 0 0 0 1px var(--line-3); }
+.btn-dark:hover { box-shadow: inset 0 0 0 1px #fff; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #141414; border: 1px solid var(--line-2); font-size: .74rem; color: var(--soft); white-space: nowrap; }
+.gdot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 2.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+
+/* Scroll reveals; headings rise word by word */
+.rv { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.rv.in { opacity: 1; transform: none; }
+.words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .06em; }
+.words .w > span { display: inline-block; transform: translateY(105%); transition: transform .9s var(--ease); transition-delay: calc(var(--i) * 45ms); }
+.words.in .w > span { transform: none; }
+
+/* Scroll progress + custom cursor */
+.progress { position: fixed; z-index: 90; left: 0; top: 0; height: 2px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #6B6B6B, #fff); }
+.cursor { position: fixed; z-index: 300; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 1px solid rgba(255,255,255,.6);
+  pointer-events: none; display: grid; place-items: center; transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background-color .3s, border-color .3s, opacity .3s;
+  mix-blend-mode: normal; opacity: 0; }
+.cursor span { font-size: .72rem; font-weight: 600; color: #000; opacity: 0; transition: opacity .2s; }
+.cursor.on { opacity: 1; }
+.cursor.view { width: 84px; height: 84px; margin: -42px 0 0 -42px; background: #fff; border-color: #fff; }
+.cursor.view span { opacity: 1; }
+.cursor.press { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
+@media (hover: none), (pointer: coarse) { .cursor { display: none; } }
+
+/* ===================== INTRO ===================== */
+.intro { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: radial-gradient(70% 60% at 50% 40%, #1F2021, #000 70%); transition: opacity .8s var(--ease), visibility .8s; }
+.intro.gone { opacity: 0; visibility: hidden; }
+.in-stage { display: grid; justify-items: center; gap: 16px; text-align: center; padding: 0 20px; }
+.in-logo { width: 70px; opacity: 0; animation: inLogo 1.4s var(--ease) .2s forwards; }
+@keyframes inLogo { from { opacity: 0; transform: scale(.7) rotate(-20deg); } to { opacity: 1; transform: none; } }
+.in-name { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 .25em; font-size: clamp(60px, 12vw, 170px); line-height: .95; letter-spacing: -.03em; }
+.in-name .w { display: inline-block; overflow: hidden; padding-bottom: .05em; }
+.in-name .w > span { display: inline-block; transform: translateY(105%); animation: rise 1.1s var(--ease) forwards; }
+.in-name .first { animation-delay: .7s !important; } .in-name .last { font-weight: 600; animation-delay: .85s !important; }
+@keyframes rise { to { transform: none; } }
+.in-line { width: 0; height: 1px; background: linear-gradient(90deg, transparent, #fff, transparent); animation: line 1.2s var(--ease) 1.5s forwards; }
+@keyframes line { to { width: min(440px, 70vw); } }
+.in-sub { color: var(--soft); font-size: .82rem; letter-spacing: .5em; padding-left: .5em; text-transform: uppercase; opacity: 0; animation: fade 1s ease 1.9s forwards; }
+@keyframes fade { to { opacity: 1; } }
+.in-enter { margin-top: 22px; opacity: 0; animation: fade .8s ease 2.4s forwards; }
+.in-skip { position: absolute; right: 22px; bottom: 22px; background: none; border: 0; color: var(--muted); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
+.in-skip:hover { color: #fff; }
+
+/* ===================== VISITOR TYPE ===================== */
+.who { position: fixed; inset: 0; z-index: 150; display: grid; place-items: center; background: radial-gradient(60% 60% at 50% 30%, #161717, #000 70%); opacity: 0; visibility: hidden; transition: opacity .6s var(--ease), visibility .6s; }
+.who.open { opacity: 1; visibility: visible; }
+.who-in { text-align: center; padding: 30px 20px; }
+.who h2 { margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 500; letter-spacing: -.03em; }
+.who p { margin: 12px 0 0; color: var(--muted); }
+.profiles { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 3vw, 30px); margin-top: 42px; }
+.profile { width: clamp(150px, 18vw, 210px); padding: 26px 18px; border-radius: 18px; background: var(--card); border: 1px solid var(--line-2); cursor: pointer; display: grid; justify-items: center; gap: 12px;
+  transition: transform .45s var(--ease), border-color .3s, background-color .3s; }
+.profile:hover, .profile:focus-visible { transform: translateY(-8px); border-color: #fff; background: var(--card-2); }
+.profile .ava { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #fff, #9A9A9A); color: #000; transition: transform .45s var(--ease); }
+.profile:hover .ava { transform: rotate(-8deg) scale(1.08); }
+.profile .ava svg { width: 28px; height: 28px; }
+.profile b { font-size: 1.05rem; font-weight: 600; }
+.profile small { color: var(--muted); font-size: .8rem; }
+
+/* ===================== NAV ===================== */
+.nav { position: fixed; z-index: 60; top: 0; left: 0; right: 0; transition: transform .45s var(--ease), background-color .4s; }
+.nav.solid { background: rgba(0, 0, 0, .78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.nav.hide { transform: translateY(-100%); }
+.nav-in { display: flex; align-items: center; gap: 26px; height: 72px; padding-inline: var(--pad); }
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.brand span { width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; background: #1B1B1B; border: 1px solid #2A2A2A; transition: transform .5s var(--ease); }
+.brand:hover span { transform: rotate(-12deg) scale(1.06); }
+.brand img { width: 24px; }
+.links { display: flex; gap: 6px; }
+.links a { padding: 8px 14px; border-radius: 999px; font-size: .9rem; color: var(--soft); transition: background-color .25s, color .25s; }
+.links a:hover { background: #1C1C1C; color: #fff; }
+.nav-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.nav .btn { min-height: 40px; padding: 0 18px; font-size: .88rem; }
+.who-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0 12px 0 4px; height: 40px; border-radius: 999px; border: 1px solid var(--line-2); background: none; cursor: pointer; color: var(--soft); font-size: .84rem; }
+.who-btn i { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #fff, #9A9A9A); color: #000; font-style: normal; font-weight: 700; font-size: .78rem; }
+.burger { display: none; width: 42px; height: 42px; background: none; border: 0; cursor: pointer; place-items: center; }
+.burger span, .burger span::before, .burger span::after { display: block; width: 22px; height: 2px; background: #fff; position: relative; transition: transform .3s var(--ease), background-color .2s; }
+.burger span::before, .burger span::after { content: ""; position: absolute; left: 0; }
+.burger span::before { top: -7px; } .burger span::after { top: 7px; }
+.menu-open .burger span { background: transparent; }
+.menu-open .burger span::before { transform: translateY(7px) rotate(45deg); }
+.menu-open .burger span::after { transform: translateY(-7px) rotate(-45deg); }
+.mmenu { position: fixed; z-index: 59; top: 110px; left: 0; right: 0; bottom: 0; background: #000; padding: 10px var(--pad) 30px; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
+.menu-open .mmenu { opacity: 1; visibility: visible; }
+.mmenu a { display: flex; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 1.6rem; font-weight: 500; }
+.mmenu a::after { content: "→"; color: var(--muted); }
+
+/* Skills ticker */
+.ticker { overflow: hidden; border-block: 1px solid #141414; background: rgba(5, 5, 5, .85); }
+.ticker-row { display: flex; width: max-content; animation: slide 45s linear infinite; }
+.ticker span { display: inline-flex; align-items: center; gap: 22px; padding: 10px 22px 10px 0; font-family: var(--mono); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: #8C8C8C; white-space: nowrap; }
+.ticker span::after { content: "✦"; color: #444; font-size: .8em; }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* ===================== HERO ===================== */
+.hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; align-items: center; overflow: hidden; padding: 140px var(--pad) 90px;
+  background: radial-gradient(70% 70% at 70% 35%, #2C2E2F 0%, #141516 40%, #000 75%); }
+.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background: repeating-linear-gradient(115deg, transparent 0 80px, rgba(255,255,255,.025) 80px 81px); }
+.hero-ghost { position: absolute; z-index: 0; left: 50%; top: 52%; transform: translate(-50%, -50%) translateX(var(--gx, 0px)); font-size: clamp(140px, 24vw, 380px); font-weight: 700; letter-spacing: -.05em;
+  color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.07); white-space: nowrap; pointer-events: none; user-select: none; }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(30px, 5vw, 80px); align-items: center; max-width: 1320px; width: 100%; margin-inline: auto; }
+.avail { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--line-2); font-size: .85rem; color: var(--soft); }
+.hero h1 { margin: 22px 0 0; font-size: clamp(64px, 9.5vw, 150px); line-height: .9; letter-spacing: -.04em; font-weight: 600; }
+.hero h1 .serif { font-weight: 400; padding-right: .06em; }
+.hero .role { margin: 18px 0 0; font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 500; letter-spacing: -.02em; }
+.hero .role span { color: var(--muted); }
+.hero .lead { margin: 18px 0 0; max-width: 520px; color: var(--soft); font-size: clamp(1rem, 1.25vw, 1.12rem); line-height: 1.6; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.hero-mini { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 36px; }
+.hero-mini div b { display: block; font-size: 1.7rem; font-weight: 600; letter-spacing: -.03em; }
+.hero-mini div span { color: var(--muted); font-size: .82rem; }
+
+/* Tilted portrait card with badge and floating panels */
+.photo-wrap { position: relative; justify-self: center; width: min(430px, 82vw); perspective: 1100px; }
+.photo { position: relative; aspect-ratio: 4 / 5; border-radius: 22px; padding: 12px; background: linear-gradient(160deg, #2A2A2A, #0E0E0E); border: 1px solid #333;
+  transform: rotate(-4deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d; transition: transform .6s var(--ease);
+  box-shadow: 0 50px 90px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.04), 0 30px 120px -40px rgba(255,255,255,.12); animation: float 7s ease-in-out infinite; }
+@keyframes float { 50% { translate: 0 -12px; } }
+.photo .frame { position: relative; height: 100%; border-radius: 14px; overflow: hidden; background: #1A1A1A; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; transform: scale(1.04); transition: transform 1.2s var(--ease); }
+.photo:hover img { transform: scale(1.1); }
+.photo .frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.25) 50%, transparent 65%); transform: translateX(-130%); animation: sheen 6s ease-in-out 2.5s infinite; }
+@keyframes sheen { 0%, 70% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+.badge { position: absolute; z-index: 2; left: 26px; top: 26px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 6px; background: #fff; color: #000;
+  font-family: var(--mono); font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; transform: translateZ(40px); }
+.badge::before { content: ""; position: absolute; left: -12px; top: 50%; width: 46px; height: 46px; margin-top: -23px; border-radius: 50%; border: 1px solid rgba(255,255,255,.5); animation: ring 2.6s ease-out infinite; }
+@keyframes ring { from { transform: scale(.6); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+.panel { position: absolute; z-index: 3; padding: 16px 18px; border-radius: 14px; background: rgba(10, 10, 10, .72); border: 1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 24px 50px -24px rgba(0,0,0,.9); animation: float 6s ease-in-out infinite; }
+.panel .mono { display: block; margin-bottom: 8px; color: #fff; }
+.panel p { margin: 0; color: var(--soft); font-size: .86rem; line-height: 1.5; }
+.panel.p1 { right: -44%; top: 34%; width: 290px; animation-delay: -2s; }
+.panel.p2 { left: -16%; bottom: 7%; display: flex; align-items: center; gap: 12px; animation-delay: -4s; }
+.panel.p2 b { font-size: 1.9rem; font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+.panel.p2 span { color: var(--muted); font-size: .8rem; line-height: 1.3; }
+
+/* ===================== SECTIONS ===================== */
+.section { position: relative; isolation: isolate; padding-top: clamp(80px, 12vh, 130px); }
+.ghost { position: absolute; z-index: -1; left: 50%; top: clamp(40px, 7vh, 80px); transform: translate(-50%, var(--gy, 0px)); font-size: clamp(100px, 17vw, 270px); font-weight: 700; letter-spacing: -.05em;
+  line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.06); white-space: nowrap; pointer-events: none; user-select: none; }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 18px; padding-inline: var(--pad); }
+.head .mono { display: block; margin-bottom: 14px; }
+.head h2 { margin: 0; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+.head h2 .serif { color: var(--soft); }
+.head p { margin: 14px 0 0; max-width: 520px; color: var(--muted); font-size: 1rem; line-height: 1.55; }
+.arrows { display: flex; gap: 8px; }
+.arrows button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--card); cursor: pointer; display: grid; place-items: center; color: var(--soft); transition: background-color .25s, color .25s, border-color .25s; }
+.arrows button:hover { background: #fff; color: #000; border-color: #fff; }
+.rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); padding: 30px var(--pad) 36px; scrollbar-width: none; perspective: 1200px; }
+.rail::-webkit-scrollbar { display: none; }
+
+/* Project cards: original colours; lift, tilt toward cursor, zoom, sheen, white glow */
+.card { position: relative; flex: none; width: clamp(270px, 28vw, 400px); scroll-snap-align: start; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; color: inherit;
+  transform-style: preserve-3d; transition: transform .55s var(--ease); }
+.card:hover, .card:focus-visible { transform: translateY(-10px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+.card .art { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: 16px; overflow: hidden; background: var(--card-2); box-shadow: 0 0 0 1px var(--line-2); transition: box-shadow .45s var(--ease); }
+.card:hover .art, .card:focus-visible .art { box-shadow: 0 0 0 1px rgba(255,255,255,.7), 0 30px 60px -28px rgba(255,255,255,.22), 0 40px 70px -40px #000; }
+.card img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 1.1s var(--ease), object-position 5s ease; }
+.card:hover img, .card:focus-visible img { transform: scale(1.07); object-position: bottom; }
+.card .art::before { content: ""; position: absolute; z-index: 2; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%); transform: translateX(-130%); pointer-events: none; }
+.card:hover .art::before { transform: translateX(130%); transition: transform 1s var(--ease); }
+.card .art::after { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.78)); opacity: 0; transition: opacity .4s; }
+.card:hover .art::after, .card:focus-visible .art::after { opacity: 1; }
+.card .ph { position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; text-align: center; font-size: 2rem; font-weight: 600; letter-spacing: -.03em; color: #3A3A3A;
+  background: radial-gradient(120% 100% at 50% 0%, #1E1E1E, #0B0B0B); }
+.card .tagnew { position: absolute; z-index: 3; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; background: rgba(0,0,0,.65); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: .7rem; color: #fff; }
+.card .open { position: absolute; z-index: 3; left: 14px; right: 14px; bottom: 14px; display: flex; align-items: center; justify-content: space-between; opacity: 0; transform: translateY(12px); transition: opacity .35s var(--ease), transform .45s var(--ease); }
+.card:hover .open, .card:focus-visible .open { opacity: 1; transform: none; }
+.card .open b { font-size: .85rem; font-weight: 600; }
+.card .open i { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: #000; transition: transform .4s var(--ease); }
+.card:hover .open i { transform: rotate(-45deg); }
+.card h3 { margin: 16px 0 0; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 600; letter-spacing: -.01em; }
+.card h3 small { color: var(--muted); font-weight: 400; font-size: .82rem; }
+.card .tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* All websites banner */
+.allsites { position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px; margin: 6px var(--pad) 0; padding: clamp(26px, 4vw, 46px); border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--line-2); background: radial-gradient(90% 140% at 0% 0%, #2A2B2C, transparent 60%), var(--card); transition: border-color .3s, transform .6s var(--ease); }
+.allsites:hover { border-color: #fff; transform: translateY(-4px); }
+.allsites h3 { margin: 10px 0 0; font-size: clamp(2rem, 4.4vw, 3.6rem); font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+.allsites h3 .serif { color: var(--soft); }
+.allsites p { margin: 12px 0 0; max-width: 540px; color: var(--soft); line-height: 1.55; }
+.allsites .btn { margin-top: 22px; }
+.allsites .stack { display: flex; padding-left: 50px; }
+.allsites .stack img { width: 130px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 10px; border: 3px solid #0A0A0A; margin-left: -50px;
+  transform: rotate(var(--r)) translateY(0); transition: transform .6s var(--ease); box-shadow: 0 18px 34px -14px #000; }
+.allsites:hover .stack img { transform: rotate(0) translateY(-8px); }
+.allsites:hover .stack img:nth-child(2) { transition-delay: .05s; } .allsites:hover .stack img:nth-child(3) { transition-delay: .1s; } .allsites:hover .stack img:nth-child(4) { transition-delay: .15s; }
+
+/* Spotlight cards (services, steps, plans, FAQ): a soft light follows the cursor */
+.spot { position: relative; isolation: isolate; overflow: hidden; }
+.spot::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.09), transparent 60%); }
+.spot:hover::before { opacity: 1; }
+
+/* Services: 3D ring turning with scroll on wide screens */
+.ring-sec { height: 270vh; padding-top: 0; }
+.ring-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 80px; overflow: hidden; isolation: isolate; }
+.ring-stage { position: relative; height: 470px; perspective: 1500px; }
+.ring { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+.rc { position: absolute; width: 310px; height: 390px; margin: -195px 0 0 -155px; padding: 26px; border-radius: 20px; background: linear-gradient(160deg, #1A1A1A, #0A0A0A); border: 1px solid #2A2A2A;
+  display: flex; flex-direction: column; justify-content: space-between; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 34px 70px -34px #000; transition: border-color .3s, box-shadow .3s; }
+.rc.front { border-color: rgba(255,255,255,.75); box-shadow: 0 34px 80px -30px rgba(255,255,255,.18); }
+.rc .ico { width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; background: #1C1C1C; border: 1px solid #2E2E2E; }
+.rc .ico svg { width: 26px; height: 26px; }
+.rc .no { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+.rc h3 { margin: 22px 0 0; font-size: 1.4rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.rc p { margin: 10px 0 0; color: var(--soft); font-size: .92rem; line-height: 1.5; }
+.rc .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.ring-hint { position: absolute; left: 0; right: 0; bottom: 6%; text-align: center; }
+
+/* Results */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 30px var(--pad) 0; border-block: 1px solid var(--line-2); }
+.stat { padding: clamp(26px, 3.5vw, 44px) clamp(12px, 2vw, 26px); text-align: center; transition: background-color .3s; }
+.stat:hover { background: #070707; }
+.stat + .stat { border-left: 1px solid var(--line-2); }
+.stat b { display: block; font-size: clamp(2.6rem, 5vw, 4.4rem); font-weight: 500; letter-spacing: -.05em; line-height: 1; }
+.stat span { display: block; margin-top: 10px; color: var(--muted); font-size: .9rem; }
+.logos { overflow: hidden; margin-top: 30px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); }
+.logos-row { display: flex; align-items: center; gap: 70px; width: max-content; animation: slide 30s linear infinite; }
+.logos:hover .logos-row { animation-play-state: paused; }
+.logos img { height: 30px; width: auto; opacity: .75; transition: opacity .3s, transform .3s; }
+.logos img:hover { opacity: 1; transform: scale(1.1); }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(26px, 5vw, 70px); align-items: center; margin: 30px var(--pad) 0; }
+.about-img { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 16 / 11; background: var(--card-2); border: 1px solid var(--line-2); }
+.about-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transition: transform 1.4s var(--ease); }
+.about-img:hover img { transform: scale(1.06); }
+.about-img .chip { position: absolute; left: 16px; bottom: 16px; background: rgba(0,0,0,.65); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; }
+.about h3 { margin: 0; font-size: clamp(2.2rem, 4.4vw, 3.6rem); font-weight: 600; letter-spacing: -.04em; line-height: 1.02; }
+.about h3 .serif { color: var(--soft); }
+.about p { margin: 18px 0 0; color: var(--soft); line-height: 1.7; font-size: 1.03rem; }
+.about strong { color: #fff; }
+.about .points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+.about .points div { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: var(--card); border: 1px solid var(--line-2); font-size: .9rem; color: var(--soft); transition: border-color .3s, color .3s; }
+.about .points div:hover { border-color: #555; color: #fff; }
+.about .points svg { flex: none; }
+
+/* Process */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 30px var(--pad) 0; counter-reset: s; }
+.step { padding: 26px; border-radius: 18px; background: var(--card); border: 1px solid var(--line-2); transition: transform .5s var(--ease), border-color .3s; }
+.step:hover { transform: translateY(-6px); border-color: #4A4A4A; }
+.step .n { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+.step .n b { font-family: var(--sans); font-size: 3rem; font-weight: 600; letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1px #444; }
+.step h3 { margin: 26px 0 0; font-size: 1.15rem; font-weight: 600; }
+.step p { margin: 10px 0 0; color: var(--soft); font-size: .92rem; line-height: 1.55; }
+.step .bar { margin-top: 20px; height: 2px; border-radius: 2px; background: #1C1C1C; overflow: hidden; }
+.step .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #666, #fff); transition: width 1.4s var(--ease) .3s; }
+.step.in .bar i { width: var(--w); }
+
+/* Pricing */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 30px var(--pad) 0; }
+.plan { display: flex; flex-direction: column; padding: 28px; border-radius: 20px; background: var(--card); border: 1px solid var(--line-2); transition: transform .5s var(--ease), border-color .3s; }
+.plan:hover { transform: translateY(-6px); border-color: #4A4A4A; }
+.plan.pop { background: linear-gradient(180deg, #161616, #0A0A0A); border-color: rgba(255,255,255,.6); }
+.plan .top-l { display: flex; justify-content: space-between; align-items: center; }
+.plan .name { padding: 7px 14px; border-radius: 999px; background: #1C1C1C; font-size: .88rem; font-weight: 500; }
+.plan .spots { display: inline-flex; align-items: center; gap: 8px; color: var(--soft); font-size: .88rem; }
+.plan .price { margin-top: 24px; display: flex; align-items: flex-start; gap: 6px; font-size: clamp(2.6rem, 3.6vw, 3.2rem); font-weight: 500; letter-spacing: -.04em; line-height: 1; }
+.plan .price small { font-size: 1rem; margin-top: 6px; color: var(--soft); }
+.plan .per { margin-top: 8px; color: var(--muted); font-size: .9rem; }
+.plan .btn { width: 100%; margin-top: 24px; }
+.plan ul { list-style: none; margin: 26px 0 0; padding: 24px 0 0; border-top: 1px solid var(--line-2); display: grid; gap: 13px; }
+.plan li { display: flex; align-items: center; gap: 10px; color: var(--soft); font-size: .93rem; }
+.plan li svg { flex: none; }
+
+/* FAQ */
+.faq { display: grid; gap: 10px; margin: 30px auto 0; padding-inline: var(--pad); max-width: 900px; }
+.faq details { border-radius: 14px; background: var(--card); border: 1px solid var(--line-2); transition: border-color .3s; }
+.faq details[open], .faq details:hover { border-color: #3A3A3A; }
+.faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 22px; font-weight: 500; cursor: pointer; font-size: 1.02rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary i { flex: none; width: 34px; height: 34px; border-radius: 50%; background: #000; border: 1px solid var(--line-2); display: grid; place-items: center; transition: transform .4s var(--ease), background-color .3s; }
+.faq details[open] summary i { transform: rotate(45deg); background: #fff; color: #000; }
+.faq .ans { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease); }
+.faq details[open] .ans { grid-template-rows: 1fr; }
+.faq .ans > div { overflow: hidden; }
+.faq .ans p { margin: 0; padding: 0 22px 20px; color: var(--soft); line-height: 1.65; }
+
+/* Contact */
+.contact { position: relative; isolation: isolate; margin-top: clamp(90px, 14vh, 150px); padding: clamp(100px, 16vh, 170px) var(--pad); text-align: center; overflow: hidden; border-top: 1px solid var(--line);
+  background: radial-gradient(60% 70% at 50% 100%, #222324, #000 70%); }
+.contact h2 { margin: 24px auto 0; max-width: 1000px; font-size: clamp(3rem, 8vw, 7rem); font-weight: 600; letter-spacing: -.05em; line-height: .95; }
+.contact h2 .serif { font-weight: 400; }
+.contact p { margin: 22px auto 0; max-width: 520px; color: var(--soft); font-size: 1.08rem; line-height: 1.6; }
+.contact .acts { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+.mail { display: inline-block; margin-top: 30px; font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 500; background: linear-gradient(#fff, #fff) left bottom / 100% 1px no-repeat; padding-bottom: 4px; transition: background-size .45s var(--ease); }
+.mail:hover { background-size: 0 1px; background-position: right bottom; }
+.socials { display: flex; justify-content: center; gap: 10px; margin-top: 26px; }
+.socials a { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--soft); transition: color .25s, border-color .25s, transform .4s var(--ease), background-color .25s; }
+.socials a:hover { color: #000; background: #fff; border-color: #fff; transform: translateY(-4px); }
+.socials svg { width: 18px; height: 18px; }
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; padding: 24px var(--pad) 32px; border-top: 1px solid var(--line); background: #0B0B0B; color: var(--muted); font-size: .88rem; }
+.credit { display: inline-flex; align-items: center; gap: 10px; }
+.credit b { padding: 8px 14px; border-radius: 999px; background: #1C1C1C; color: #fff; font-weight: 500; }
+
+/* ===================== OVERLAYS ===================== */
+.overlay { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, .8); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s; }
+.overlay.open { opacity: 1; visibility: visible; }
+.modal { position: relative; width: min(880px, 100%); max-height: calc(100svh - 40px); overflow-y: auto; border-radius: 22px; background: #0E0E0E; border: 1px solid var(--line-2); transform: translateY(26px) scale(.97); transition: transform .5s var(--ease); scrollbar-width: thin; }
+.overlay.open .modal { transform: none; }
+.m-art { position: relative; aspect-ratio: 16 / 9; background: var(--card-2); }
+.m-art img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.m-art .ph { position: absolute; inset: 0; display: grid; place-items: center; font-size: 3rem; font-weight: 600; color: #3A3A3A; }
+.m-close { position: absolute; z-index: 3; right: 14px; top: 14px; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-3); background: rgba(0,0,0,.6); cursor: pointer; display: grid; place-items: center; transition: background-color .25s, color .25s, transform .4s var(--ease); }
+.m-close:hover { background: #fff; color: #000; transform: rotate(90deg); }
+.m-body { padding: 28px clamp(20px, 4vw, 40px) 36px; }
+.m-body h3 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+.m-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.m-body p { margin: 18px 0 0; color: var(--soft); line-height: 1.7; max-width: 640px; }
+.m-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.m-more { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line-2); }
+.m-more h4 { margin: 0 0 14px; font-size: 1rem; font-weight: 600; }
+.m-more .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.m-more button { background: var(--card-2); border: 1px solid var(--line-2); border-radius: 12px; overflow: hidden; padding: 0; cursor: pointer; text-align: left; color: inherit; transition: border-color .3s, transform .4s var(--ease); }
+.m-more button:hover { border-color: #fff; transform: translateY(-4px); }
+.m-more button img { aspect-ratio: 16 / 10; width: 100%; object-fit: cover; object-position: top; }
+.m-more button span { display: block; padding: 10px 12px; font-size: .88rem; font-weight: 500; }
+
+/* Quick intro */
+.reel { position: fixed; inset: 0; z-index: 130; background: #000; opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility .4s; }
+.reel.open { opacity: 1; visibility: visible; }
+.reel-bars { position: absolute; z-index: 3; left: var(--pad); right: var(--pad); top: 18px; display: flex; gap: 6px; }
+.reel-bars span { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.22); overflow: hidden; }
+.reel-bars i { display: block; height: 100%; width: 0; background: #fff; }
+.reel-close { top: 34px; right: var(--pad); }
+.reel-slide { position: absolute; inset: 0; display: grid; align-content: end; padding: 90px var(--pad) 90px; opacity: 0; transition: opacity .6s var(--ease); }
+.reel-slide.on { opacity: 1; }
+.reel-slide img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform: scale(1.08); transition: transform 6s linear; }
+.reel-slide.on img.bg { transform: scale(1); }
+.reel-slide::before { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.35) 60%, rgba(0,0,0,.1)), linear-gradient(180deg, transparent 50%, rgba(0,0,0,.8)); }
+.reel-slide .t { position: relative; z-index: 2; max-width: 900px; }
+.reel-slide h3 { margin: 14px 0 0; font-size: clamp(3rem, 8vw, 7rem); font-weight: 600; letter-spacing: -.05em; line-height: .95; }
+.reel-slide p { margin: 18px 0 0; max-width: 540px; color: #E5E5E5; font-size: 1.1rem; line-height: 1.6; }
+.reel-tap { position: absolute; z-index: 2; top: 0; bottom: 0; width: 35%; background: none; border: 0; cursor: pointer; }
+.reel-tap.prev { left: 0; } .reel-tap.next { right: 0; }
+.reel-hint { position: absolute; z-index: 3; left: var(--pad); bottom: 22px; color: #777; font-size: .78rem; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1100px) {
+  .panel.p1 { right: -14%; top: auto; bottom: -6%; width: 250px; }
+  .panel.p2 { left: -10%; bottom: auto; top: 12%; }
+}
+@media (max-width: 960px) {
+  .links, .who-btn span, .nav-book { display: none; }
+  .burger { display: grid; }
+  .hero { padding-top: 130px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .photo-wrap { width: min(400px, 78vw); margin-top: 20px; }
+  .about { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .plans { grid-template-columns: 1fr; max-width: 560px; }
+  .allsites { grid-template-columns: 1fr; }
+  .ring-sec { height: auto; padding-top: clamp(80px, 12vh, 130px); }
+  .ring-pin { position: static; height: auto; display: block; padding-top: 0; overflow: visible; }
+  .ring-stage { height: auto; perspective: none; }
+  .ring { position: static; width: auto; height: auto; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 30px var(--pad) 30px; scrollbar-width: none; }
+  .ring::-webkit-scrollbar { display: none; }
+  .rc { position: relative; flex: none; margin: 0; width: 80vw; max-width: 340px; height: auto; min-height: 330px; transform: none !important; opacity: 1 !important; scroll-snap-align: start; }
+  .ring-hint { display: none; }
+}
+@media (max-width: 640px) {
+  .hero h1 { font-size: clamp(56px, 17vw, 80px); }
+  .hero-actions .btn { flex: 1 1 auto; }
+  .panel.p1 { right: -4%; bottom: -10%; width: 210px; padding: 12px 14px; }
+  .panel.p1 p { font-size: .78rem; }
+  .panel.p2 { left: -4%; top: 6%; padding: 10px 12px; }
+  .panel.p2 b { font-size: 1.4rem; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3) { border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line-2); }
+  .arrows { display: none; }
+  .card { width: 80vw; }
+  .steps { grid-template-columns: 1fr; }
+  .about .points { grid-template-columns: 1fr; }
+  .m-more .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  .rv { opacity: 1; transform: none; }
+  .words .w > span, .in-name .w > span { transform: none; }
+  .in-logo, .in-sub, .in-enter { opacity: 1; } .in-line { width: min(440px, 70vw); }
+}
+</style>
+</head>
+<body class="locked">
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span>View</span></div>
+
+<!-- ===================== INTRO ===================== -->
+<div class="intro" id="intro" role="dialog" aria-label="Welcome">
+  <div class="in-stage">
+    <img class="in-logo" src="assets/logo.svg" alt="" width="70" height="64">
+    <div class="in-name" aria-label="Sameer Saifi"><span class="w"><span class="first serif silver">Sameer</span></span><span class="w"><span class="last silver">Saifi</span></span></div>
+    <div class="in-line" aria-hidden="true"></div>
+    <div class="in-sub">Web Developer &amp; CRO Expert</div>
+    <button class="btn btn-white in-enter" type="button" id="inEnter">Enter portfolio
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+  <button class="in-skip" type="button" id="inSkip">Skip</button>
+</div>
+
+<!-- ===================== VISITOR TYPE ===================== -->
+<div class="who" id="who" role="dialog" aria-modal="true" aria-labelledby="whoTitle">
+  <div class="who-in">
+    <h2 id="whoTitle">What brings you here?</h2>
+    <p>Pick one and the page puts what matters to you first.</p>
+    <div class="profiles">
+      <button class="profile" type="button" data-profile="client"><span class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8h13l-1.1 13H6.6L5.5 8Z"/><path d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/></svg></span><b>I need a store</b><small>Stores, services &amp; pricing</small></button>
+      <button class="profile" type="button" data-profile="recruiter"><span class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><b>I’m hiring</b><small>About, results &amp; work</small></button>
+      <button class="profile" type="button" data-profile="developer"><span class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/></svg></span><b>I build too</b><small>3D sites, motion &amp; builds</small></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Sameer Saifi, back to top"><span><img src="assets/logo.svg" alt="" width="24" height="22"></span></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#stores">Stores</a><a href="#websites">Websites</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a data-gallery href="#websites" target="_blank" rel="noopener">All Websites ↗</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-white nav-book mag" data-book href="#contact">Book a call</a>
+      <button class="who-btn" type="button" id="whoBtn" aria-label="Change what you’re here for"><i id="whoInitial">S</i><span id="whoName">Store</span></button>
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-row" id="ticker"></div></div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile">
+  <a href="#stores">Stores</a><a href="#websites">Websites</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a data-gallery href="#websites" target="_blank" rel="noopener">All Websites</a>
+</nav>
+
+<main id="top">
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero" aria-label="Introduction">
+    <span class="hero-ghost" id="heroGhost" aria-hidden="true">SHOPIFY</span>
+    <div class="hero-grid">
+      <div>
+        <span class="avail rv"><i class="gdot" aria-hidden="true"></i>Available for new projects</span>
+        <h1 class="silver rv"><span class="serif">Sameer</span> Saifi</h1>
+        <p class="role rv">Web Developer <span>&amp;</span> CRO Expert</p>
+        <p class="lead rv" id="tagline">I don’t just build stores. I design sales. Fast, premium Shopify stores that turn browsers into buyers.</p>
+        <div class="hero-actions rv">
+          <a class="btn btn-white mag" data-book href="#contact">Book a 15-min call
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <button class="btn btn-glass mag" type="button" id="playIntro"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>Quick intro</button>
+          <a class="btn btn-dark mag" href="#stores">See my work</a>
+        </div>
+        <div class="hero-mini rv">
+          <div><b data-count="4" data-suffix="+">0</b><span>Years building stores</span></div>
+          <div><b data-count="250" data-suffix="+">0</b><span>Websites delivered</span></div>
+          <div><b data-count="98" data-suffix="%">0</b><span>Client retention</span></div>
+        </div>
+      </div>
+      <div class="photo-wrap rv" id="photoWrap">
+        <div class="photo" id="photo">
+          <span class="badge">Shopify Developer</span>
+          <div class="frame"><img src="assets/portrait.webp" alt="Portrait of Sameer Saifi" width="700" height="1167" fetchpriority="high"></div>
+        </div>
+        <div class="panel p1"><span class="mono">Core skills &amp; results</span><p>Custom Shopify stores, conversion optimisation and custom sections, with 250+ websites delivered for brands across India.</p></div>
+        <div class="panel p2"><b>1M+</b><span>Revenue driven<br>for clients</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="sections">
+    <!-- ===================== STORES ===================== -->
+    <section class="section" id="stores" data-sec="stores" aria-labelledby="h-stores">
+      <span class="ghost" aria-hidden="true">Stores</span>
+      <div class="head">
+        <div><span class="mono">01 // <b>Shopify stores</b></span><h2 class="words" id="h-stores">Stores I’ve <span class="serif">built</span></h2><p>Real Shopify stores for Indian brands. Hover a store, then open it for details and the live link.</p></div>
+        <div class="arrows"><button type="button" data-scroll="-1" aria-label="Scroll left"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-scroll="1" aria-label="Scroll right"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
+      </div>
+      <div class="rail" data-rail="stores"></div>
+    </section>
+
+    <!-- ===================== WEBSITES ===================== -->
+    <section class="section" id="websites" data-sec="websites" aria-labelledby="h-websites">
+      <span class="ghost" aria-hidden="true">Websites</span>
+      <div class="head">
+        <div><span class="mono">02 // <b>Web experiences</b></span><h2 class="words" id="h-websites">Websites that <span class="serif">move</span></h2><p>3D worlds, scroll stories and motion. Every one is live: open it and try it yourself.</p></div>
+        <div class="arrows"><button type="button" data-scroll="-1" aria-label="Scroll left"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-scroll="1" aria-label="Scroll right"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
+      </div>
+      <div class="rail" data-rail="websites"></div>
+      <a class="allsites rv" data-gallery href="#websites" target="_blank" rel="noopener">
+        <div>
+          <span class="mono">Full collection // <b>Websites I’ve built</b></span>
+          <h3>See every <span class="serif">website</span></h3>
+          <p>Shopify stores, 3D worlds and scroll stories, all live in one gallery.</p>
+          <span class="btn btn-white">Open the gallery ↗</span>
+        </div>
+        <div class="stack" aria-hidden="true">
+          <img src="assets/work/kage.webp" alt="" style="--r:-9deg" loading="lazy"><img src="assets/work/tapntrust.webp" alt="" style="--r:5deg" loading="lazy"><img src="assets/work/planet-jumping.webp" alt="" style="--r:-4deg" loading="lazy"><img src="assets/work/babyninja.webp" alt="" style="--r:8deg" loading="lazy">
+        </div>
+      </a>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="section ring-sec" id="services" data-sec="services" aria-labelledby="h-services">
+      <div class="ring-pin">
+        <span class="ghost" aria-hidden="true">Services</span>
+        <div class="head"><div><span class="mono">03 // <b>Services</b></span><h2 class="words" id="h-services">What I <span class="serif">do</span></h2><p>Creative website services for dropshippers, brands and businesses looking to stand out online.</p></div></div>
+        <div class="ring-stage"><div class="ring" id="ring"></div></div>
+        <span class="ring-hint mono" aria-hidden="true">Scroll to turn // <b id="ringNow">01</b> / 04</span>
+      </div>
+    </section>
+
+    <!-- ===================== RESULTS ===================== -->
+    <section class="section" id="results" data-sec="results" aria-labelledby="h-results">
+      <div class="head"><div><span class="mono">04 // <b>Results</b></span><h2 class="words" id="h-results">Numbers that <span class="serif">matter</span></h2></div></div>
+      <div class="stats">
+        <div class="stat rv"><b data-count="24" data-suffix="K">0</b><span>Total views generated</span></div>
+        <div class="stat rv"><b data-count="250" data-suffix="+">0</b><span>Websites delivered</span></div>
+        <div class="stat rv"><b data-count="1" data-suffix="M+">0</b><span>Revenue driven for clients</span></div>
+        <div class="stat rv"><b data-count="98" data-suffix="%">0</b><span>Client retention rate</span></div>
+      </div>
+      <p class="mono" style="text-align:center;margin:34px 0 0">Worked with Indian brands like</p>
+      <div class="logos" aria-label="Adsalign, TapnTrusts, Saekos, BabyNinja, NJ Sports, Lumzo"><div class="logos-row" id="logos"></div></div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section" id="about" data-sec="about" aria-labelledby="h-about">
+      <span class="ghost" aria-hidden="true">About</span>
+      <div class="head"><div><span class="mono">05 // <b>About me</b></span></div></div>
+      <div class="about">
+        <div class="about-img rv"><img src="assets/billboard.webp" alt="Sameer Saifi seated in a black armchair" width="1672" height="941" loading="lazy"><span class="chip"><i class="gdot" aria-hidden="true"></i>4+ years in Shopify</span></div>
+        <div class="rv">
+          <h3 class="words" id="h-about">I don’t just build stores. I <span class="serif">design</span> sales.</h3>
+          <p>I’m a Shopify developer obsessed with clean design, smooth shopping and the small details that turn browsers into buyers. With <strong>4+ years</strong> of building online stores, from custom sections to complete store builds, I create stores that look premium, load fast, and sell.</p>
+          <p>Every project starts with your customers. I listen first, build second. The result? A store that feels like your brand, works beautifully on mobile, and keeps visitors moving toward checkout.</p>
+          <div class="points" id="points"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROCESS ===================== -->
+    <section class="section" id="process" data-sec="process" aria-labelledby="h-process">
+      <div class="head"><div><span class="mono">06 // <b>Process</b></span><h2 class="words" id="h-process">How we <span class="serif">work</span></h2><p>Four simple steps, the same on every project.</p></div></div>
+      <div class="steps" id="steps"></div>
+    </section>
+
+    <!-- ===================== PRICING ===================== -->
+    <section class="section" id="pricing" data-sec="pricing" aria-labelledby="h-pricing">
+      <span class="ghost" aria-hidden="true">Pricing</span>
+      <div class="head"><div><span class="mono">07 // <b>Pricing</b></span><h2 class="words" id="h-pricing">Simple, honest <span class="serif">packages</span></h2><p>One-time payment. No hidden costs.</p></div></div>
+      <div class="plans" id="plans"></div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section" id="faq" data-sec="faq" aria-labelledby="h-faq">
+      <div class="head"><div><span class="mono">08 // <b>FAQ</b></span><h2 class="words" id="h-faq">Got <span class="serif">questions?</span></h2></div></div>
+      <div class="faq" id="faqList"></div>
+    </section>
+  </div>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="contact" id="contact" aria-labelledby="h-contact">
+    <span class="ghost" aria-hidden="true" style="top:10%">Contact</span>
+    <span class="avail rv"><i class="gdot" aria-hidden="true"></i>Available for new projects</span>
+    <h2 class="silver words" id="h-contact">Your store deserves <span class="serif">better sales.</span></h2>
+    <p class="rv">From quick Shopify setups to fully custom brand stores, let’s build a store your customers love to buy from.</p>
+    <div class="acts rv">
+      <a class="btn btn-white mag" data-book href="#contact">Start your project</a>
+      <a class="btn btn-glass mag" data-gallery href="#websites" target="_blank" rel="noopener">See all websites ↗</a>
+    </div>
+    <a class="mail rv" id="mail" href="#contact"></a>
+    <div class="socials rv" id="socials"></div>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year">2026</span> Sameer Saifi. All rights reserved.</span>
+  <span class="credit">Created by <b>Sameer Saifi</b></span>
+</footer>
+
+<!-- Project details -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal" id="modal">
+    <button class="m-close" type="button" id="mClose" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="m-art" id="mArt"></div>
+    <div class="m-body">
+      <h3 id="mTitle"></h3>
+      <div class="m-meta" id="mMeta"></div>
+      <p id="mDesc"></p>
+      <div class="m-acts" id="mActs"></div>
+      <div class="m-more"><h4>More projects</h4><div class="grid" id="mMore"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick intro -->
+<div class="reel" id="reel" role="dialog" aria-modal="true" aria-label="Quick intro">
+  <div class="reel-bars" id="reelBars"></div>
+  <button class="m-close reel-close" type="button" id="reelClose" aria-label="Close intro"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div id="reelSlides"></div>
+  <button class="reel-tap prev" type="button" id="reelPrev" aria-label="Previous"></button>
+  <button class="reel-tap next" type="button" id="reelNext" aria-label="Next"></button>
+  <span class="reel-hint">Tap the sides · Space pauses · Esc closes</span>
+</div>
+
+<script>
+/* ======================================================================
+   EDIT YOUR DETAILS HERE
+   ====================================================================== */
+var CONFIG = {
+  bookingLink: 'https://cal.com/sameer-saifi-9ci6kx',
+  email: 'samsaifi2526@gmail.com',
+  instagram: 'https://www.instagram.com/',   // replace with your Instagram profile link
+  x: 'https://x.com/',                       // replace with your X profile link
+  linkedin: 'https://www.linkedin.com/',     // replace with your LinkedIn profile link
+  gallery: 'https://sameersaifi07.github.io/Website-I-ve-Built/'
+};
+var G = CONFIG.gallery;
+
+var STORES = [
+  { title: 'TapnTrust', img: 'assets/work/tapntrust.webp', url: 'https://tapntrust.in/', tags: ['Shopify', 'NFC & QR', 'Reviews'],
+    desc: 'One tap, more reviews. A Shopify store for smart review stands that let customers leave a Google review with a single tap or scan.' },
+  { title: 'Baby Ninja', img: 'assets/work/babyninja.webp', url: 'https://babyninja.in/', tags: ['Shopify', 'Kids fashion', 'Mobile-first'],
+    desc: 'A playful, mobile-first Shopify store for a kids’ brand, with festive collections, bright storytelling and a quick path to checkout.' },
+  { title: 'Lumzo', img: 'assets/work/lumzo.webp', url: 'https://lumzo.in/', tags: ['Shopify', 'Multi-category', 'Offers'],
+    desc: 'An everyday essentials store across baby care, toys, beauty and home, with bestsellers, product reels, offer timers and trust badges built in.' },
+  { title: 'Saekos', img: 'assets/work/saekos.webp', url: 'https://saekos.com/', tags: ['Shopify', 'Kids learning', 'D2C'],
+    desc: 'Screen-free busy books for toddlers. A clean D2C store that shows parents exactly how each activity book helps their child learn.' },
+  { title: 'NJ Sports', img: '', url: 'https://nj-info.in/', tags: ['Landing page', 'Community', 'Telegram'],
+    desc: 'A cricket and football community landing page: live match threads, real analysis and a one-tap path into the Telegram channel.' }
+];
+
+var WEBSITES = [
+  { title: 'Kage', img: 'assets/work/kage.webp', url: G + 'kage/', tags: ['Three.js', 'Scroll scenes', 'Landing page'],
+    desc: 'A five-chapter night walk through a mountain temple: a live Three.js world, scroll-driven scenes and layered foreground art.' },
+  { title: 'Works Wheel', img: 'assets/work/works-wheel.webp', url: G + 'works-wheel/', tags: ['3D', 'Interactive', 'Portfolio'],
+    desc: 'A portfolio you turn. Nine pieces sit in a ring that opens into a 3D drum as you scroll, drag or use the arrow keys.' },
+  { title: 'Forty-Four', img: 'assets/work/lewis-hamilton.webp', url: G + 'lewis-hamilton/', tags: ['GSAP', 'Fan tribute', 'Motion'],
+    desc: 'An unofficial fan tribute to a racing career: warp-speed hero, a pinned horizontal timeline, count-up stats and a circuits slider.' },
+  { title: 'Planet Jumping', img: 'assets/work/planet-jumping.webp', url: G + 'planet-jumping/', tags: ['3D', 'Space portal', 'Interactive'],
+    desc: 'A 3D space portal that hops from planet to planet, with interactive animation at every stop.' },
+  { title: 'VEX', img: 'assets/work/vex.webp', url: G + 'vex/', tags: ['Video hero', 'Liquid glass UI'],
+    desc: 'A cinematic video hero with a liquid-glass interface and smooth, layered motion.' },
+  { title: 'Ladakh: Parallax Story', img: 'assets/work/india.webp', url: G + 'india/', tags: ['Parallax', 'Scroll animation', 'Travel'],
+    desc: 'A journey through Ladakh told in layered parallax: mountains, monasteries and type that move as you scroll.' }
+];
+
+var SERVICES = [
+  { title: 'Shopify Development', text: 'Your store is your best closer. I build fast, premium stores that move every visitor toward one thing: checkout.', tags: ['Custom storefronts', 'High-converting layouts', 'Custom sections', 'Mobile-first'],
+    icon: '<path d="M5.5 8h13l-1.1 13H6.6L5.5 8Z"/><path d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/>' },
+  { title: 'Website Design & Development', text: 'First impressions sell. I design clean, responsive websites that make your brand look trusted at first scroll.', tags: ['Responsive design', 'Dynamic transitions', 'Brand-led visuals', 'Clear navigation'],
+    icon: '<rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M8.5 20.5h7M12 16.5v4"/>' },
+  { title: 'Conversion Optimisation', text: 'Traffic isn’t the problem. I fix the friction in your product pages and checkout so more visitors become buyers.', tags: ['Product pages', 'Checkout flow', 'CTA optimisation', 'UX audits'],
+    icon: '<path d="M3.5 17 9 11.5l4 4L20.5 8"/><path d="M15 8h5.5v5.5"/>' },
+  { title: 'Custom Website Templates', text: 'Launch like a premium brand. My original templates are built to look sharp, load fast, and sell from day one.', tags: ['Original designs', 'Easy to edit', 'Reusable sections', 'Fast launch'],
+    icon: '<rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9.5h17M10 9.5v11"/>' }
+];
+
+var POINTS = ['Custom Shopify stores', 'Conversion optimisation', 'Custom sections', 'Speed & SEO setup', 'Razorpay / UPI setup', 'Mobile-first design'];
+
+var STEPS = [
+  { title: 'Discovery call', len: '15 min', w: '25%', text: 'A quick call about your brand, your customers and the stores you love. You get a clear plan and timeline before anything starts.' },
+  { title: 'Design', len: 'Week 1', w: '50%', text: 'Layouts built around your products: clean, premium and mobile-first, with the path to checkout planned from the first screen.' },
+  { title: 'Build', len: 'Weeks 1–3', w: '75%', text: 'Your store comes to life inside your own Shopify account, with custom sections you can edit and progress shared at every stage.' },
+  { title: 'Launch & support', len: 'Day 7 to week 4', w: '100%', text: 'Speed, payments and shipping checked, then launch. Premium includes 30 days of post-launch support and conversion fixes.' }
+];
+
+var PLANS = [
+  { name: 'Starter', price: '9,999', features: ['Shopify store setup', 'Premium theme customisation', 'Up to 5 pages', 'Mobile-optimised design', 'Razorpay / UPI & shipping setup', '7-day delivery'] },
+  { name: 'Growth', price: '19,999', spots: '2 Spots', features: ['Custom-designed Shopify store', 'Up to 10 pages', 'Custom sections you can edit', 'High-converting product pages', 'Speed optimisation', '2 rounds of revisions'] },
+  { name: 'Premium', price: '29,999', features: ['Fully custom store design', 'Unlimited pages & sections', 'Conversion (CRO) audit + fixes', 'Checkout & cart optimisation', 'Speed + SEO setup', '30 days of post-launch support'] }
+];
+
+var FAQ = [
+  ['What kind of Shopify work do you do?', 'Everything from new store setups to fully custom builds: theme customisation, custom sections, product page redesigns and conversion fixes. Whether you’re a new dropshipper or an established brand, I’ll build a store that looks premium and sells.'],
+  ['What do I need to get started?', 'Just your Shopify login (collaborator access), logo, product details and a few stores you love. Don’t have everything ready? No problem. We’ll figure it out together on a quick 15-minute call.'],
+  ['Can you redesign my existing Shopify store?', 'Yes. I can refresh your current theme or rebuild it completely, without losing your products, orders or customer data.'],
+  ['How many revisions do I get?', 'Starter includes 1 round, Growth includes 2, and Premium continues with 30 days of post-launch support. I share progress at every stage, so there are no surprises at the end.'],
+  ['How long does it take to build my store?', 'Starter stores are ready in 7 days. Growth and Premium projects usually take 2–4 weeks, depending on pages and custom features. You’ll get a clear timeline before we begin.'],
+  ['Who owns the store after it’s built?', 'You do, 100%. The store, design, content and custom sections are fully yours. I build inside your Shopify account, and once the final payment is made, everything is handed over completely.']
+];
+
+var CLIENTS = [['client-1', 'Adsalign'], ['client-2', 'TapnTrusts'], ['client-3', 'Saekos'], ['client-4', 'BabyNinja'], ['client-5', 'NJ Sports'], ['client-6', 'Lumzo']];
+
+var TICKER = ['Shopify development', 'Conversion optimisation', 'Custom sections', 'Speed optimisation', 'Mobile-first design', 'Three.js & motion', 'Razorpay / UPI setup', 'Custom templates'];
+
+// What each visitor sees first, and the hero line they get
+var PROFILES = {
+  client:    { short: 'Store',  order: ['stores', 'services', 'results', 'about', 'pricing', 'process', 'websites', 'faq'],
+               tagline: 'I don’t just build stores. I design sales. Fast, premium Shopify stores that turn browsers into buyers.' },
+  recruiter: { short: 'Hiring', order: ['about', 'results', 'stores', 'websites', 'services', 'process', 'faq', 'pricing'],
+               tagline: 'Web developer and CRO expert with 4+ years of building Shopify stores and immersive, high-performance websites.' },
+  developer: { short: 'Dev',    order: ['websites', 'stores', 'services', 'process', 'about', 'results', 'faq', 'pricing'],
+               tagline: 'Three.js worlds, scroll scenes, GSAP motion and custom Shopify sections. Built by hand, shipped fast.' }
+};
+
+/* ====================================================================== */
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var pad2 = function (n) { return String(n).padStart(2, '0'); };
+  var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  var session = { get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
+  var CHECK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#3A3A3A"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>';
+  var ARROW = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  $('year').textContent = new Date().getFullYear();
+
+  // ---------- Links ----------
+  document.querySelectorAll('[data-book]').forEach(function (a) { a.href = CONFIG.bookingLink; a.target = '_blank'; a.rel = 'noopener'; });
+  document.querySelectorAll('[data-gallery]').forEach(function (a) { a.href = CONFIG.gallery; });
+  $('mail').href = 'mailto:' + CONFIG.email; $('mail').textContent = CONFIG.email;
+  var ICON = {
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>',
+    x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3l-6.6 7.5L22 21h-6.1l-4.8-6.2L5.6 21h-3l7.1-8.1L2.2 3h6.2l4.3 5.7zm-1 16.2h1.7L7.3 4.7H5.5z"/></svg>',
+    linkedin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.5M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"/></svg>'
+  };
+  $('socials').innerHTML = ['instagram', 'x', 'linkedin'].map(function (k) {
+    return '<a href="' + esc(CONFIG[k]) + '" target="_blank" rel="noopener" aria-label="' + (k === 'x' ? 'X' : k.charAt(0).toUpperCase() + k.slice(1)) + '">' + ICON[k] + '</a>';
+  }).join('');
+
+  // ---------- Build content ----------
+  var tick = TICKER.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('');
+  $('ticker').innerHTML = tick + tick;
+  var ALL = STORES.map(function (p) { p.kind = 'Shopify store'; return p; }).concat(WEBSITES.map(function (p) { p.kind = 'Website'; return p; }));
+  function cards(list, offset) {
+    return list.map(function (p, i) {
+      return '<button class="card" type="button" data-p="' + (offset + i) + '" aria-label="' + esc(p.title) + ', open details">' +
+        '<span class="art">' + (p.img ? '<img src="' + esc(p.img) + '" alt="" loading="lazy" decoding="async">' : '<span class="ph">' + esc(p.title) + '</span>') +
+        (i === 0 ? '<span class="tagnew"><i class="gdot" aria-hidden="true"></i>Latest</span>' : '') +
+        '<span class="open"><b>Open project</b><i>' + ARROW + '</i></span></span>' +
+        '<h3>' + esc(p.title) + ' <small>' + pad2(i + 1) + '</small></h3>' +
+        '<span class="tags">' + p.tags.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join('') + '</span></button>';
+    }).join('');
+  }
+  document.querySelector('[data-rail="stores"]').innerHTML = cards(STORES, 0);
+  document.querySelector('[data-rail="websites"]').innerHTML = cards(WEBSITES, STORES.length);
+  $('ring').innerHTML = SERVICES.map(function (s, i) {
+    return '<article class="rc spot"><div><div style="display:flex;justify-content:space-between;align-items:center"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#E5E5E5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + s.icon + '</svg></span><span class="no">' + pad2(i + 1) + ' / 04</span></div>' +
+      '<h3>' + esc(s.title) + '</h3><p>' + esc(s.text) + '</p></div><div class="tags">' + s.tags.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join('') + '</div></article>';
+  }).join('');
+  $('points').innerHTML = POINTS.map(function (t) { return '<div>' + CHECK + esc(t) + '</div>'; }).join('');
+  $('steps').innerHTML = STEPS.map(function (s, i) {
+    return '<div class="step spot rv" style="--w:' + s.w + '"><div class="n"><span>' + esc(s.len) + '</span><b>' + pad2(i + 1) + '</b></div><h3>' + esc(s.title) + '</h3><p>' + esc(s.text) + '</p><div class="bar"><i></i></div></div>';
+  }).join('');
+  $('plans').innerHTML = PLANS.map(function (p) {
+    return '<div class="plan spot rv' + (p.spots ? ' pop' : '') + '"><div class="top-l"><span class="name">' + esc(p.name) + '</span>' + (p.spots ? '<span class="spots"><i class="gdot" aria-hidden="true"></i>' + esc(p.spots) + '</span>' : '') + '</div>' +
+      '<div class="price"><small>₹</small>' + esc(p.price) + '</div><div class="per">One-time</div>' +
+      '<a class="btn ' + (p.spots ? 'btn-white' : 'btn-dark') + '" href="' + esc(CONFIG.bookingLink) + '" target="_blank" rel="noopener">Get started</a>' +
+      '<ul>' + p.features.map(function (f) { return '<li>' + CHECK + esc(f) + '</li>'; }).join('') + '</ul></div>';
+  }).join('');
+  $('faqList').innerHTML = FAQ.map(function (f) {
+    return '<details class="spot rv"><summary>' + esc(f[0]) + '<i aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><div class="ans"><div><p>' + esc(f[1]) + '</p></div></div></details>';
+  }).join('');
+  var logos = CLIENTS.map(function (c) { return '<img src="assets/clients/' + c[0] + '.webp" alt="' + esc(c[1]) + '" height="30" loading="lazy">'; }).join('');
+  $('logos').innerHTML = logos + logos.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"');
+
+  // Headings: wrap each word so it can rise in
+  document.querySelectorAll('.words').forEach(function (el) {
+    var i = 0;
+    (function walk(node) {
+      [].slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var w = document.createElement('span'); w.className = 'w';
+            var inner = document.createElement('span'); inner.textContent = part; inner.style.setProperty('--i', i++);
+            w.appendChild(inner); frag.appendChild(w);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) { walk(n); }
+      });
+    })(el);
+  });
+
+  // Scroll arrows
+  document.querySelectorAll('[data-scroll]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var rail = b.closest('.section').querySelector('.rail');
+      rail.scrollBy({ left: Number(b.dataset.scroll) * rail.clientWidth * .8, behavior: 'smooth' });
+    });
+  });
+
+  // ---------- Reveal + count-up ----------
+  function count(el) {
+    var end = Number(el.dataset.count), suf = el.dataset.suffix || '', t0 = performance.now();
+    if (reduced) { el.textContent = end + suf; return; }
+    (function step(t) {
+      var k = Math.min(1, (t - t0) / 1600);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))) + suf;
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(count);
+      io.unobserve(e.target);
+    });
+  }, { threshold: .15, rootMargin: '0px 0px -40px 0px' }) : null;
+  function observe() {
+    document.querySelectorAll('.rv:not(.in), .words:not(.in)').forEach(function (el) {
+      if (io && !reduced) io.observe(el);
+      else { el.classList.add('in'); el.querySelectorAll('[data-count]').forEach(count); }
+    });
+  }
+
+  // ---------- Visitor type ----------
+  var who = $('who');
+  function applyProfile(key) {
+    var p = PROFILES[key] || PROFILES.client, box = $('sections');
+    p.order.forEach(function (id) { var s = box.querySelector('[data-sec="' + id + '"]'); if (s) box.appendChild(s); });
+    $('tagline').textContent = p.tagline;
+    $('whoName').textContent = p.short; $('whoInitial').textContent = p.short.charAt(0);
+    store.set('pf-visitor', key);
+    if (window.readRing) window.readRing();
+  }
+  function openWho() { who.classList.add('open'); document.body.classList.add('locked'); setTimeout(function () { who.querySelector('.profile').focus(); }, 300); }
+  function closeWho() { who.classList.remove('open'); document.body.classList.remove('locked'); observe(); }
+  document.querySelectorAll('[data-profile]').forEach(function (b) {
+    b.addEventListener('click', function () { applyProfile(b.dataset.profile); closeWho(); window.scrollTo(0, 0); });
+  });
+  $('whoBtn').addEventListener('click', openWho);
+  applyProfile(store.get('pf-visitor') || 'client');
+
+  // ---------- Intro (once per visit) ----------
+  var intro = $('intro');
+  function endIntro() {
+    if (intro.classList.contains('gone')) return;
+    intro.classList.add('gone'); session.set('pf-intro', '1');
+    if (store.get('pf-asked')) closeWho(); else { store.set('pf-asked', '1'); openWho(); }
+  }
+  if (session.get('pf-intro') || reduced) { intro.classList.add('gone'); closeWho(); }
+  else { $('inEnter').addEventListener('click', endIntro); $('inSkip').addEventListener('click', endIntro); setTimeout(function () { $('inEnter').focus(); }, 2600); }
+
+  // ---------- Nav, progress bar, burger ----------
+  var nav = $('nav'), bar = $('progress'), lastY = 0;
+  function onScroll() {
+    var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
+    nav.classList.toggle('solid', y > 30);
+    nav.classList.toggle('hide', y > 400 && y > lastY && !document.body.classList.contains('menu-open'));
+    bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    lastY = y;
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  function setMenu(open) { document.body.classList.toggle('menu-open', open); $('burger').setAttribute('aria-expanded', String(open)); }
+  $('burger').addEventListener('click', function () { setMenu(!document.body.classList.contains('menu-open')); });
+  document.querySelectorAll('#mmenu a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+  // ---------- Services ring ----------
+  var ring = $('ring'), rcs = [].slice.call(ring.children), ringSec = $('services');
+  var wide = window.matchMedia('(min-width: 961px)');
+  var ringTurn = 0, ringTarget = 0;
+  window.readRing = function () {
+    if (!wide.matches) { ringTarget = 0; return; }
+    var r = ringSec.getBoundingClientRect(), span = ringSec.offsetHeight - window.innerHeight;
+    ringTarget = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) * (rcs.length - 1) : 0;
+  };
+  function placeRing() {
+    if (!wide.matches) { rcs.forEach(function (c) { c.style.transform = ''; c.style.opacity = ''; c.classList.remove('front'); }); return; }
+    var n = rcs.length, step = 360 / n, R = Math.max(340, Math.min(520, window.innerWidth * .3));
+    rcs.forEach(function (c, i) {
+      var a = (i - ringTurn) * step, rad = a * Math.PI / 180, facing = Math.cos(rad);
+      c.style.transform = 'rotateY(' + a + 'deg) translateZ(' + R + 'px)';
+      c.style.opacity = String(.22 + .78 * Math.max(0, facing));
+      c.classList.toggle('front', facing > .92);
+    });
+    $('ringNow').textContent = pad2(Math.min(n, Math.round(ringTurn) + 1));
+  }
+  (function ringLoop() {
+    var gap = ringTarget - ringTurn;
+    if (Math.abs(gap) > .0005 || !ring.dataset.ready) { ringTurn += gap * (reduced ? 1 : .1); placeRing(); ring.dataset.ready = '1'; }
+    requestAnimationFrame(ringLoop);
+  })();
+  window.addEventListener('scroll', window.readRing, { passive: true });
+  window.addEventListener('resize', function () { window.readRing(); placeRing(); });
+  window.readRing();
+
+  // ---------- Ghost words + hero parallax ----------
+  var ghosts = [].slice.call(document.querySelectorAll('.ghost'));
+  function drift() {
+    var vh = window.innerHeight;
+    ghosts.forEach(function (g) {
+      var r = g.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      g.style.setProperty('--gy', ((r.top - vh / 2) * -.1).toFixed(1) + 'px');
+    });
+    $('heroGhost').style.setProperty('--gx', (window.scrollY * -.25).toFixed(1) + 'px');
+  }
+  if (!reduced) { window.addEventListener('scroll', drift, { passive: true }); drift(); }
+
+  // ---------- Pointer effects (mouse/trackpad only) ----------
+  if (finePointer && !reduced) {
+    var cursor = $('cursor'), cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy;
+    document.addEventListener('pointermove', function (e) {
+      tx = e.clientX; ty = e.clientY; cursor.classList.add('on');
+      var t = e.target;
+      cursor.classList.toggle('view', !!(t.closest && t.closest('.card, .allsites, .m-more button')));
+      // Tilt project cards
+      var c = t.closest && t.closest('.card');
+      if (c) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--ry', (((e.clientX - r.left) / r.width - .5) * 12).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', (-((e.clientY - r.top) / r.height - .5) * 10).toFixed(2) + 'deg');
+      }
+      // Spotlight follows the cursor
+      var s = t.closest && t.closest('.spot');
+      if (s) { var sr = s.getBoundingClientRect(); s.style.setProperty('--mx', (e.clientX - sr.left) + 'px'); s.style.setProperty('--my', (e.clientY - sr.top) + 'px'); }
+    });
+    document.addEventListener('pointerout', function (e) {
+      var c = e.target.closest && e.target.closest('.card');
+      if (c && !c.contains(e.relatedTarget)) { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); }
+      if (!e.relatedTarget) cursor.classList.remove('on');
+    });
+    document.addEventListener('pointerdown', function () { cursor.classList.add('press'); });
+    document.addEventListener('pointerup', function () { cursor.classList.remove('press'); });
+    (function follow() { cx += (tx - cx) * .2; cy += (ty - cy) * .2; cursor.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(follow); })();
+
+    // Portrait card tilts toward the cursor
+    var hero = $('hero'), photo = $('photo');
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      photo.style.setProperty('--ry', (x * 16).toFixed(2) + 'deg'); photo.style.setProperty('--rx', (-y * 12).toFixed(2) + 'deg');
+    });
+    hero.addEventListener('pointerleave', function () { photo.style.setProperty('--ry', '0deg'); photo.style.setProperty('--rx', '0deg'); });
+
+    // Magnetic buttons
+    document.querySelectorAll('.mag').forEach(function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .22).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * .3).toFixed(1) + 'px)';
+      });
+      b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+    });
+  }
+
+  // ---------- Project details ----------
+  var overlay = $('overlay'), lastFocus = null;
+  function openProject(i) {
+    var p = ALL[i]; if (!p) return;
+    if (!overlay.classList.contains('open')) lastFocus = document.activeElement;
+    $('mArt').innerHTML = p.img ? '<img src="' + esc(p.img) + '" alt="' + esc(p.title) + '">' : '<span class="ph">' + esc(p.title) + '</span>';
+    $('mTitle').textContent = p.title;
+    $('mMeta').innerHTML = '<span class="chip">' + esc(p.kind) + '</span>' + p.tags.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join('');
+    $('mDesc').textContent = p.desc;
+    $('mActs').innerHTML = '<a class="btn btn-white" href="' + esc(p.url) + '" target="_blank" rel="noopener">Visit live website ' + ARROW + '</a>' +
+      '<a class="btn btn-dark" href="' + esc(CONFIG.bookingLink) + '" target="_blank" rel="noopener">Book a call</a>';
+    var more = ALL.map(function (q, j) { return { q: q, j: j }; }).filter(function (o) { return o.j !== i && o.q.kind === p.kind && o.q.img; }).slice(0, 3);
+    $('mMore').innerHTML = more.map(function (o) { return '<button type="button" data-p="' + o.j + '"><img src="' + esc(o.q.img) + '" alt="" loading="lazy"><span>' + esc(o.q.title) + '</span></button>'; }).join('');
+    $('modal').scrollTop = 0;
+    overlay.classList.add('open'); document.body.classList.add('locked');
+    setTimeout(function () { $('mClose').focus(); }, 60);
+  }
+  function closeProject() { overlay.classList.remove('open'); document.body.classList.remove('locked'); if (lastFocus) lastFocus.focus(); }
+  document.addEventListener('click', function (e) { var b = e.target.closest('[data-p]'); if (b) openProject(Number(b.dataset.p)); });
+  $('mClose').addEventListener('click', closeProject);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeProject(); });
+
+  // ---------- Quick intro ----------
+  var SLIDES = [
+    { tag: 'Hello, I’m', title: 'Sameer Saifi', text: 'Web developer and CRO expert. 4+ years of building Shopify stores that look premium, load fast and sell.', img: 'assets/billboard.webp' },
+    { tag: 'Results', title: '250+ websites', text: 'Delivered for dropshippers, D2C brands and businesses across India, with 98% of clients coming back.', img: 'assets/work/tapntrust.webp' },
+    { tag: 'Shopify stores', title: 'Built to sell', text: 'TapnTrust, Baby Ninja, Lumzo and Saekos: stores designed around one thing, checkout.', img: 'assets/work/babyninja.webp' },
+    { tag: 'Web experiences', title: '3D & motion', text: 'Three.js temples, 3D wheels, space portals and parallax journeys. Websites people remember.', img: 'assets/work/kage.webp' },
+    { tag: 'Let’s talk', title: 'Your store next', text: 'Book a free 15-minute call and let’s plan a store your customers love to buy from.', img: 'assets/portrait.webp' }
+  ];
+  var reel = $('reel'), cur = 0, paused = false, elapsed = 0, last = 0, raf = 0, DUR = 5200;
+  $('reelSlides').innerHTML = SLIDES.map(function (s) {
+    return '<div class="reel-slide"><img class="bg" src="' + esc(s.img) + '" alt="" loading="lazy"><div class="t"><span class="mono"><b>' + esc(s.tag) + '</b></span><h3 class="silver">' + esc(s.title) + '</h3><p>' + esc(s.text) + '</p></div></div>';
+  }).join('');
+  $('reelBars').innerHTML = SLIDES.map(function () { return '<span><i></i></span>'; }).join('');
+  var slideEls = [].slice.call(reel.querySelectorAll('.reel-slide')), barEls = [].slice.call(reel.querySelectorAll('.reel-bars i'));
+  function show(i) {
+    if (i >= SLIDES.length) { closeReel(); return; }
+    cur = Math.max(0, i); elapsed = 0; paused = false;
+    slideEls.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
+    barEls.forEach(function (b, k) { b.style.width = k < cur ? '100%' : '0'; });
+  }
+  function loop(t) {
+    raf = requestAnimationFrame(loop);
+    var dt = last ? t - last : 0; last = t;
+    if (paused) return;
+    elapsed += dt;
+    var k = Math.min(1, elapsed / DUR);
+    barEls[cur].style.width = (k * 100) + '%';
+    if (k >= 1) show(cur + 1);
+  }
+  function openReel() { lastFocus = document.activeElement; reel.classList.add('open'); document.body.classList.add('locked'); show(0); last = 0; cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); setTimeout(function () { $('reelClose').focus(); }, 60); }
+  function closeReel() { reel.classList.remove('open'); document.body.classList.remove('locked'); cancelAnimationFrame(raf); if (lastFocus) lastFocus.focus(); }
+  $('playIntro').addEventListener('click', openReel);
+  $('reelClose').addEventListener('click', closeReel);
+  $('reelPrev').addEventListener('click', function () { show(cur - 1); });
+  $('reelNext').addEventListener('click', function () { show(cur + 1); });
+
+  // ---------- Keyboard ----------
+  document.addEventListener('keydown', function (e) {
+    if (!intro.classList.contains('gone') && (e.key === 'Enter' || e.key === 'Escape')) { e.preventDefault(); endIntro(); return; }
+    if (reel.classList.contains('open')) {
+      if (e.key === 'Escape') closeReel();
+      else if (e.key === 'ArrowRight') show(cur + 1);
+      else if (e.key === 'ArrowLeft') show(cur - 1);
+      else if (e.key === ' ') { e.preventDefault(); paused = !paused; }
+      return;
+    }
+    if (e.key === 'Escape') {
+      if (overlay.classList.contains('open')) closeProject();
+      else if (document.body.classList.contains('menu-open')) setMenu(false);
+    }
+  });
+})();
+</script>
+</body>
+</html>
