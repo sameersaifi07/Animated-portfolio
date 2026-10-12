@@ -163,10 +163,6 @@ em.serif, .serif { font-family: var(--serif); font-style: italic; font-weight: 4
   background: radial-gradient(70% 70% at 70% 35%, #2C2E2F 0%, #141516 40%, #000 75%); }
 .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
   background: repeating-linear-gradient(115deg, transparent 0 80px, rgba(255,255,255,.025) 80px 81px); }
-/* Big "SHOPIFY" behind the hero: a soft silver outline with a faint fill, always whole and centred */
-.hero-ghost { position: absolute; z-index: 0; left: 50%; top: 52%; transform: translate(-50%, -50%) translateX(var(--gx, 0px)); font-size: clamp(140px, 22vw, 360px); font-weight: 700; letter-spacing: -.05em; line-height: 1;
-  background: linear-gradient(180deg, rgba(255,255,255,.11) 0%, rgba(255,255,255,.015) 80%); -webkit-background-clip: text; background-clip: text; color: transparent;
-  -webkit-text-stroke: 1.2px rgba(255,255,255,.17); white-space: nowrap; pointer-events: none; user-select: none; }
 .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(30px, 5vw, 80px); align-items: center; max-width: 1320px; width: 100%; margin-inline: auto; }
 .avail { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--line-2); font-size: .85rem; color: var(--soft); }
 .hero h1 { margin: 22px 0 0; font-size: clamp(64px, 9.5vw, 150px); line-height: .9; letter-spacing: -.04em; font-weight: 600; }
@@ -179,9 +175,10 @@ em.serif, .serif { font-family: var(--serif); font-style: italic; font-weight: 4
 .hero-mini div b { display: block; font-size: 1.7rem; font-weight: 600; letter-spacing: -.03em; }
 .hero-mini div span { color: var(--muted); font-size: .82rem; }
 
-/* Straight portrait card with badge and floating panels */
-.photo-wrap { position: relative; justify-self: center; width: min(430px, 82vw); }
+/* Tilted portrait card with badge and floating panels (same look as the Framer Motion site) */
+.photo-wrap { position: relative; justify-self: center; width: min(430px, 82vw); perspective: 1100px; }
 .photo { position: relative; aspect-ratio: 4 / 5; border-radius: 22px; padding: 12px; background: linear-gradient(160deg, #2A2A2A, #0E0E0E); border: 1px solid #333;
+  transform: rotate(-4deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d; transition: transform .6s var(--ease);
   box-shadow: 0 50px 90px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.04), 0 30px 120px -40px rgba(255,255,255,.12); animation: float 7s ease-in-out infinite; }
 @keyframes float { 50% { translate: 0 -12px; } }
 .photo .frame { position: relative; height: 100%; border-radius: 14px; overflow: hidden; background: #1A1A1A; }
@@ -455,8 +452,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-i
   .tl-card { padding: 20px; }
   .tl-card h3 { font-size: 1.2rem; }
   .tl-card p { font-size: .93rem; }
-  /* SHOPIFY sits whole behind the name on phones, no sideways drift */
-  .hero-ghost { top: 205px; transform: translate(-50%, 0); font-size: 23vw; }
   .about .points { grid-template-columns: 1fr; }
   .m-more .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   footer { flex-direction: column; align-items: flex-start; }
@@ -473,7 +468,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-i
 .js-wow .in-name .last { animation-delay: 2.05s !important; }
 .js-wow .in-line { animation-delay: 2.5s; } .js-wow .in-sub { animation-delay: 2.8s; } .js-wow .in-enter { animation-delay: 3.2s; }
 .hero canvas.wave { z-index: 0; opacity: .95; }
-.hero-ghost { z-index: 0; }
 /* Speed warp: background words stretch with scroll speed (project rows stay straight) */
 .ghost { transform: translate(-50%, var(--gy, 0px)) scaleX(var(--stretch, 1)); }
 /* Curtain reveals for project images */
@@ -509,6 +503,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-i
   .allsites.in .stack img:nth-child(2) { transition-delay: .1s; } .allsites.in .stack img:nth-child(3) { transition-delay: .2s; } .allsites.in .stack img:nth-child(4) { transition-delay: .3s; }
   .about-img.in img { animation: kenburns 14s ease-in-out infinite alternate; }
   .btn:active, .socials a:active, .profile:active, .arrows button:active { transform: scale(.95); transition-duration: .12s; }
+  .photo { transition: transform .25s ease-out; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -574,7 +569,6 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-i
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="hero" aria-label="Introduction">
     <canvas class="wave" id="wave" aria-hidden="true"></canvas>
-    <span class="hero-ghost" id="heroGhost" aria-hidden="true">SHOPIFY</span>
     <div class="hero-grid">
       <div>
         <span class="avail rv"><i class="gdot" aria-hidden="true"></i>Available for new projects</span>
@@ -1055,8 +1049,6 @@ var PROFILES = {
       if (r.bottom < 0 || r.top > vh) return;
       g.style.setProperty('--gy', ((r.top - vh / 2) * -.1).toFixed(1) + 'px');
     });
-    // Wide screens: SHOPIFY slides gently with scroll. Phones: it stays whole and centred.
-    $('heroGhost').style.setProperty('--gx', innerWidth > 640 ? (window.scrollY * -.25).toFixed(1) + 'px' : '0px');
   }
   if (!reduced) { window.addEventListener('scroll', drift, { passive: true }); drift(); }
 
@@ -1077,6 +1069,14 @@ var PROFILES = {
     document.addEventListener('pointerdown', function () { cursor.classList.add('press'); });
     document.addEventListener('pointerup', function () { cursor.classList.remove('press'); });
     (function follow() { cx += (tx - cx) * .2; cy += (ty - cy) * .2; cursor.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(follow); })();
+
+    // Portrait card tilts toward the cursor
+    var hero = $('hero'), photo = $('photo');
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      photo.style.setProperty('--ry', (x * 16).toFixed(2) + 'deg'); photo.style.setProperty('--rx', (-y * 12).toFixed(2) + 'deg');
+    });
+    hero.addEventListener('pointerleave', function () { photo.style.setProperty('--ry', '0deg'); photo.style.setProperty('--rx', '0deg'); });
 
     // Magnetic buttons
     document.querySelectorAll('.mag').forEach(function (b) {
@@ -1252,6 +1252,21 @@ var PROFILES = {
 
     // The gallery banner and the About photo animate once they are on screen (reveal adds .in)
     if (io) { document.querySelectorAll('.allsites, .about-img, .spot').forEach(function (el) { if (!el.classList.contains('rv')) io.observe(el); }); }
+
+    // Portrait card follows a finger, and the phone's tilt where the browser allows it (Android)
+    if (!reduced) {
+      var photoT = $('photo'), touching = false;
+      var setTilt = function (x, y) { photoT.style.setProperty('--rx', x.toFixed(2) + 'deg'); photoT.style.setProperty('--ry', y.toFixed(2) + 'deg'); };
+      $('photoWrap').addEventListener('touchmove', function (e) {
+        var p = e.touches[0], r = photoT.getBoundingClientRect(); touching = true;
+        setTilt(-((p.clientY - r.top) / r.height - .5) * 18, ((p.clientX - r.left) / r.width - .5) * 22);
+      }, { passive: true });
+      $('photoWrap').addEventListener('touchend', function () { touching = false; setTilt(0, 0); });
+      window.addEventListener('deviceorientation', function (e) {
+        if (e.gamma == null || touching) return;
+        setTilt(Math.max(-10, Math.min(10, (e.beta - 45) * .25)), Math.max(-12, Math.min(12, e.gamma * .4)));
+      });
+    }
   }
 
   // ---------- Project details ----------
