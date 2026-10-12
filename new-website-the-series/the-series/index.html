@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sameer Saifi — The Series</title>
+<meta name="description" content="Sameer Saifi — Web Developer & CRO Expert. A portfolio told like a series: Shopify stores, web experiences, services and plans.">
+<meta name="theme-color" content="#000000">
+<meta name="gallery-title" content="Sameer Saifi — The Series">
+<meta name="gallery-category" content="Portfolio, Interactive">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap">
+<style>
+/* Black, grey and white only. Project images stay grey until you hover or open them. */
+:root {
+  --bg: #000;
+  --panel: #0E0E0E;
+  --panel-2: #161616;
+  --line: #1F1F1F;
+  --line-2: #2C2C2C;
+  --text: #FFF;
+  --soft: #C2C2C2;
+  --muted: #7C7C7C;
+  --display: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --font: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --pad: clamp(18px, 4vw, 56px);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+body.locked { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 6px; }
+.display { font-family: var(--display); font-weight: 400; letter-spacing: .02em; line-height: .92; text-transform: uppercase; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 6px; border: 0; font-weight: 600; font-size: .98rem; cursor: pointer;
+  transition: transform .25s var(--ease), background-color .25s, color .25s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-white { background: #fff; color: #000; }
+.btn-white:hover { background: #E6E6E6; }
+.btn-grey { background: rgba(110, 110, 110, .42); color: #fff; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.btn-grey:hover { background: rgba(140, 140, 140, .5); }
+.btn-line { background: transparent; color: #fff; box-shadow: inset 0 0 0 1px #4A4A4A; }
+.btn-line:hover { box-shadow: inset 0 0 0 1px #fff; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border: 1px solid var(--line-2); border-radius: 4px; font-size: .72rem; color: var(--soft); white-space: nowrap; }
+.rv { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.rv.in { opacity: 1; transform: none; }
+
+/* ===================== OPENING ===================== */
+.opening { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: #000; transition: opacity .8s var(--ease), visibility .8s; }
+.opening.gone { opacity: 0; visibility: hidden; }
+.op-stage { position: relative; display: grid; justify-items: center; gap: 18px; text-align: center; padding: 0 20px; }
+.op-logo { width: 74px; opacity: 0; transform: scale(.7); animation: opLogo 1.6s var(--ease) .2s forwards; }
+@keyframes opLogo { 40% { opacity: 1; transform: scale(1); } 100% { opacity: .9; transform: scale(1); } }
+.op-name { font-size: clamp(64px, 14vw, 190px); display: flex; overflow: hidden; }
+.op-name span { display: inline-block; transform: translateY(105%); animation: opRise .9s var(--ease) forwards; }
+@keyframes opRise { to { transform: none; } }
+.op-sub { font-size: .8rem; letter-spacing: .9em; padding-left: .9em; color: var(--muted); text-transform: uppercase; opacity: 0; animation: opFade 1s ease 2.3s forwards; }
+.op-line { width: 0; height: 1px; background: #fff; animation: opLine 1.2s var(--ease) 2.1s forwards; }
+@keyframes opLine { to { width: min(420px, 70vw); } }
+@keyframes opFade { to { opacity: 1; } }
+.op-enter { margin-top: 26px; opacity: 0; animation: opFade .8s ease 3s forwards; }
+.op-skip { position: absolute; right: 22px; bottom: 22px; background: none; border: 0; color: var(--muted); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
+.op-skip:hover { color: #fff; }
+
+/* ===================== WHO'S WATCHING ===================== */
+.who { position: fixed; inset: 0; z-index: 150; display: grid; place-items: center; background: #050505; opacity: 0; visibility: hidden; transition: opacity .6s var(--ease), visibility .6s; }
+.who.open { opacity: 1; visibility: visible; }
+.who-in { text-align: center; padding: 30px 20px; }
+.who h2 { margin: 0; font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 500; letter-spacing: -.02em; }
+.who p { margin: 12px 0 0; color: var(--muted); }
+.profiles { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(16px, 3vw, 36px); margin-top: 44px; }
+.profile { display: grid; justify-items: center; gap: 14px; background: none; border: 0; cursor: pointer; color: var(--muted); transition: color .25s; }
+.profile .ava { width: clamp(108px, 14vw, 156px); aspect-ratio: 1; border-radius: 10px; display: grid; place-items: center; outline: 2px solid transparent; outline-offset: 4px;
+  transition: outline-color .25s, transform .35s var(--ease); }
+.profile:nth-child(1) .ava { background: linear-gradient(145deg, #FFFFFF, #9A9A9A); color: #000; }
+.profile:nth-child(2) .ava { background: linear-gradient(145deg, #5A5A5A, #1F1F1F); color: #fff; }
+.profile:nth-child(3) .ava { background: linear-gradient(145deg, #2A2A2A, #000); color: #fff; box-shadow: inset 0 0 0 1px #333; }
+.profile .ava svg { width: 46%; height: 46%; }
+.profile:hover, .profile:focus-visible { color: #fff; }
+.profile:hover .ava, .profile:focus-visible .ava { outline-color: #fff; transform: scale(1.05); }
+.profile b { font-size: 1.05rem; font-weight: 500; }
+.profile small { font-size: .78rem; color: #5E5E5E; margin-top: -8px; }
+
+/* ===================== NAV ===================== */
+.nav { position: fixed; z-index: 60; top: 0; left: 0; right: 0; transition: transform .45s var(--ease), background-color .4s; background: linear-gradient(180deg, rgba(0,0,0,.75), transparent); }
+.nav.solid { background: rgba(0, 0, 0, .92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.nav.hide { transform: translateY(-100%); }
+.nav-in { display: flex; align-items: center; gap: 28px; height: 70px; padding-inline: var(--pad); }
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.brand img { width: 30px; }
+.brand b { font-family: var(--display); font-weight: 400; font-size: 1.5rem; letter-spacing: .06em; }
+.links { display: flex; gap: 22px; font-size: .9rem; color: var(--soft); }
+.links a { transition: color .2s; } .links a:hover { color: #fff; }
+.nav-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.nav-book { min-height: 38px; padding: 0 16px; font-size: .85rem; }
+.who-btn { display: inline-flex; align-items: center; gap: 8px; background: none; border: 0; cursor: pointer; color: var(--soft); font-size: .85rem; }
+.who-btn i { width: 32px; height: 32px; border-radius: 6px; display: grid; place-items: center; background: linear-gradient(145deg, #fff, #8A8A8A); color: #000; font-style: normal; font-weight: 700; font-size: .8rem; }
+.burger { display: none; width: 42px; height: 42px; background: none; border: 0; cursor: pointer; place-items: center; }
+.burger span, .burger span::before, .burger span::after { display: block; width: 22px; height: 2px; background: #fff; position: relative; transition: transform .3s var(--ease), background-color .2s; }
+.burger span::before, .burger span::after { content: ""; position: absolute; left: 0; }
+.burger span::before { top: -7px; } .burger span::after { top: 7px; }
+.menu-open .burger span { background: transparent; }
+.menu-open .burger span::before { transform: translateY(7px) rotate(45deg); }
+.menu-open .burger span::after { transform: translateY(-7px) rotate(-45deg); }
+.mmenu { position: fixed; z-index: 59; top: 70px; left: 0; right: 0; bottom: 0; background: #000; padding: 10px var(--pad) 30px; display: flex; flex-direction: column;
+  opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s; }
+.menu-open .mmenu { opacity: 1; visibility: visible; }
+.mmenu a { padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 1.6rem; font-weight: 500; }
+
+/* ===================== BILLBOARD ===================== */
+.billboard { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
+.bb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 30%; filter: grayscale(1) contrast(1.05); transform: scale(1.08); transition: transform 2.2s var(--ease); }
+.ready .bb-img { transform: scale(1); }
+.billboard::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.65) 35%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0) 55%, #000 100%); }
+.bb-copy { position: relative; z-index: 2; width: 100%; padding: 0 var(--pad) clamp(70px, 12vh, 120px); }
+.bb-label { display: inline-flex; align-items: center; gap: 10px; color: var(--soft); font-size: .78rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; }
+.bb-label img { width: 20px; }
+.bb-title { margin: 14px 0 0; font-size: clamp(76px, 13vw, 200px); }
+.bb-title span { display: block; color: transparent; -webkit-text-stroke: 1.5px #fff; }
+.bb-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 18px; color: var(--soft); font-size: .92rem; }
+.bb-meta b { color: #fff; font-weight: 600; }
+.bb-syn { margin: 18px 0 0; max-width: 560px; color: var(--soft); font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: 1.55; }
+.bb-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.bb-rating { position: absolute; z-index: 2; right: 0; bottom: clamp(110px, 18vh, 170px); display: flex; align-items: center; gap: 14px; padding: 10px 26px 10px 16px;
+  border-left: 3px solid #fff; background: rgba(40, 40, 40, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: .9rem; color: var(--soft); }
+.bb-rating b { color: #fff; }
+
+/* ===================== ROWS ===================== */
+.section { padding-top: clamp(56px, 8vh, 84px); }
+.row-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-inline: var(--pad); }
+.row-head h2 { margin: 0; font-size: clamp(1.3rem, 2vw, 1.75rem); font-weight: 600; letter-spacing: -.01em; }
+.row-head p { margin: 6px 0 0; color: var(--muted); font-size: .92rem; }
+.row-nav { display: flex; gap: 8px; }
+.row-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); background: none; cursor: pointer; display: grid; place-items: center; color: var(--soft); transition: border-color .2s, color .2s; }
+.row-nav button:hover { border-color: #fff; color: #fff; }
+.rail { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); padding: 18px var(--pad) 26px; scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }
+
+/* Poster card */
+.card { position: relative; flex: none; width: clamp(250px, 26vw, 360px); scroll-snap-align: start; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; color: inherit; }
+.card .art { position: relative; aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; background: var(--panel-2); }
+.card img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(1); transition: filter .5s, transform .7s var(--ease); }
+.card:hover img, .card:focus-visible img { filter: grayscale(0); transform: scale(1.05); }
+.card .ph { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 2.6rem; color: #3A3A3A; background: radial-gradient(120% 100% at 50% 0%, #1E1E1E, #0B0B0B); }
+.card .badge { position: absolute; left: 10px; top: 10px; padding: 3px 7px; border-radius: 3px; background: #fff; color: #000; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.card .ep { position: absolute; left: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; background: rgba(0,0,0,.7); font-size: .7rem; color: var(--soft); opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
+.card:hover .ep, .card:focus-visible .ep { opacity: 1; transform: none; }
+.card h3 { margin: 12px 0 0; font-size: 1.02rem; font-weight: 600; }
+.card .tags { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Top 4 services */
+.top { flex: none; display: flex; align-items: flex-end; width: clamp(300px, 31vw, 430px); scroll-snap-align: start; }
+.top .n { font-family: var(--display); font-size: clamp(150px, 15vw, 230px); line-height: .76; color: #000; -webkit-text-stroke: 3px #4A4A4A; margin-right: -22px; position: relative; z-index: 0; }
+.top .box { position: relative; z-index: 1; flex: 1; min-height: 210px; padding: 20px; border-radius: 8px; background: var(--panel); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; transition: border-color .3s, transform .4s var(--ease); }
+.top:hover .box { border-color: #555; transform: translateY(-4px); }
+.top h3 { margin: 0; font-size: 1.12rem; font-weight: 600; }
+.top p { margin: 10px 0 0; color: var(--soft); font-size: .9rem; line-height: 1.5; }
+.top .tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Stats ("ratings") */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 18px var(--pad) 0; border-block: 1px solid var(--line); }
+.stat { padding: clamp(22px, 3vw, 36px) clamp(10px, 2vw, 24px); }
+.stat + .stat { border-left: 1px solid var(--line); }
+.stat b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(48px, 6vw, 92px); line-height: .9; }
+.stat span { display: block; margin-top: 10px; color: var(--muted); font-size: .88rem; }
+
+/* Seasons */
+.season { margin: 18px var(--pad) 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.season-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 22px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.season-top b { font-size: 1.05rem; font-weight: 600; }
+.season-top span { color: var(--muted); font-size: .88rem; }
+.episode { display: grid; grid-template-columns: 60px 1fr auto; align-items: center; gap: 22px; padding: 22px; border-bottom: 1px solid var(--line); transition: background-color .25s; }
+.episode:last-child { border-bottom: 0; }
+.episode:hover { background: #0A0A0A; }
+.episode .i { font-family: var(--display); font-size: 2.6rem; color: #5A5A5A; text-align: center; }
+.episode h3 { margin: 0; font-size: 1.02rem; font-weight: 600; }
+.episode p { margin: 6px 0 0; color: var(--soft); font-size: .92rem; line-height: 1.55; max-width: 720px; }
+.episode .len { color: var(--muted); font-size: .85rem; white-space: nowrap; }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 60px); align-items: center; margin: 18px var(--pad) 0; }
+.about-img { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--panel); }
+.about-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+.about-img::after { content: "THE PILOT"; position: absolute; left: 16px; top: 16px; padding: 4px 8px; background: #fff; color: #000; font-size: .66rem; font-weight: 700; letter-spacing: .14em; border-radius: 3px; }
+.about h2 { margin: 0; font-size: clamp(46px, 6vw, 92px); }
+.about h2 span { color: transparent; -webkit-text-stroke: 1px #fff; }
+.about p { margin: 18px 0 0; color: var(--soft); line-height: 1.65; font-size: 1.02rem; max-width: 600px; }
+.about strong { color: #fff; }
+
+/* Clients */
+.logos { overflow: hidden; margin-top: 18px; padding-block: 26px; border-block: 1px solid var(--line); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.logos-row { display: flex; align-items: center; gap: 70px; width: max-content; animation: slide 30s linear infinite; }
+.logos img { height: 30px; width: auto; filter: grayscale(1) brightness(1.4); opacity: .85; }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* Plans */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px var(--pad) 0; }
+.plan { position: relative; display: flex; flex-direction: column; padding: 26px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); }
+.plan.pop { border-color: #fff; }
+.plan .ribbon { position: absolute; right: 16px; top: 16px; padding: 4px 8px; border-radius: 3px; background: #fff; color: #000; font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.plan h3 { margin: 0; font-size: .82rem; color: var(--muted); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.plan .price { margin-top: 16px; font-family: var(--display); font-size: 4rem; line-height: .9; }
+.plan .price small { font-family: var(--font); font-size: 1.1rem; vertical-align: top; margin-right: 4px; color: var(--soft); }
+.plan .per { margin-top: 6px; color: var(--muted); font-size: .88rem; }
+.plan ul { list-style: none; margin: 22px 0 26px; padding: 22px 0 0; border-top: 1px solid var(--line); display: grid; gap: 12px; flex: 1; }
+.plan li { display: flex; gap: 10px; color: var(--soft); font-size: .93rem; }
+.plan li::before { content: ""; flex: none; width: 14px; height: 14px; margin-top: 3px; border-radius: 50%; border: 1px solid #5A5A5A;
+  background: radial-gradient(circle, #fff 0 3px, transparent 3.5px); }
+.plan .btn { width: 100%; }
+
+/* FAQ */
+.faq { display: grid; gap: 8px; margin: 18px var(--pad) 0; max-width: 980px; }
+.faq details { border-radius: 8px; background: var(--panel); border: 1px solid var(--line); }
+.faq summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 22px; font-weight: 500; cursor: pointer; font-size: 1.02rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary i { flex: none; position: relative; width: 16px; height: 16px; }
+.faq summary i::before, .faq summary i::after { content: ""; position: absolute; left: 0; top: 7px; width: 16px; height: 2px; background: #fff; transition: transform .35s var(--ease); }
+.faq summary i::after { transform: rotate(90deg); }
+.faq details[open] summary i::after { transform: rotate(0); }
+.faq .ans { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s var(--ease); }
+.faq details[open] .ans { grid-template-rows: 1fr; }
+.faq .ans > div { overflow: hidden; }
+.faq .ans p { margin: 0; padding: 0 22px 20px; color: var(--soft); line-height: 1.6; }
+
+/* To be continued */
+.tbc { position: relative; margin-top: clamp(80px, 12vh, 130px); padding: clamp(90px, 14vh, 150px) var(--pad); text-align: center; border-top: 1px solid var(--line); overflow: hidden; }
+.tbc .avail { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--soft); font-size: .85rem; }
+.tbc .avail i { width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px #fff; animation: pulse 2.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .3; } }
+.tbc h2 { margin: 22px 0 0; font-size: clamp(64px, 13vw, 210px); }
+.tbc h2 .dots span { display: inline-block; animation: dot 1.6s ease-in-out infinite; }
+.tbc h2 .dots span:nth-child(2) { animation-delay: .2s; } .tbc h2 .dots span:nth-child(3) { animation-delay: .4s; }
+@keyframes dot { 0%, 60%, 100% { opacity: 1; } 30% { opacity: .15; } }
+.tbc p { margin: 18px auto 0; max-width: 560px; color: var(--soft); font-size: 1.08rem; line-height: 1.6; }
+.tbc .acts { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+.socials { display: flex; justify-content: center; gap: 10px; margin-top: 28px; }
+.socials a { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--soft); transition: color .2s, border-color .2s; }
+.socials a:hover { color: #fff; border-color: #fff; }
+.socials svg { width: 18px; height: 18px; }
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; padding: 24px var(--pad) 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+.credit { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--soft); }
+.credit i { width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px #fff; animation: pulse 2.4s ease-in-out infinite; }
+.credit strong { color: #fff; font-weight: 600; }
+
+/* ===================== OVERLAYS ===================== */
+.overlay { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, .78); opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s; }
+.overlay.open { opacity: 1; visibility: visible; }
+.modal { position: relative; width: min(860px, 100%); max-height: calc(100svh - 40px); overflow-y: auto; border-radius: 10px; background: #111; transform: translateY(24px) scale(.97); transition: transform .45s var(--ease); scrollbar-width: thin; }
+.overlay.open .modal { transform: none; }
+.modal .m-art { position: relative; aspect-ratio: 16 / 9; background: var(--panel-2); }
+.modal .m-art img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.modal .m-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, #111); }
+.modal .m-art .ph { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 4rem; color: #3A3A3A; }
+.m-close { position: absolute; z-index: 3; right: 14px; top: 14px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: #111; cursor: pointer; display: grid; place-items: center; }
+.m-close:hover { background: #2A2A2A; }
+.m-body { position: relative; margin-top: -60px; padding: 0 clamp(20px, 4vw, 40px) 36px; }
+.m-body h3 { margin: 0; font-size: clamp(44px, 6vw, 76px); }
+.m-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.m-body p { margin: 18px 0 0; color: var(--soft); line-height: 1.65; max-width: 640px; }
+.m-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.m-more { margin-top: 34px; }
+.m-more h4 { margin: 0 0 14px; font-size: 1.05rem; font-weight: 600; }
+.m-more .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.m-more button { background: var(--panel-2); border: 0; border-radius: 6px; overflow: hidden; padding: 0; cursor: pointer; text-align: left; color: inherit; }
+.m-more button img { aspect-ratio: 16 / 10; width: 100%; object-fit: cover; object-position: top; filter: grayscale(1); transition: filter .4s; }
+.m-more button:hover img { filter: none; }
+.m-more button span { display: block; padding: 10px 12px; font-size: .88rem; font-weight: 500; }
+
+/* Play Intro (story reel) */
+.reel { position: fixed; inset: 0; z-index: 130; background: #000; opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility .4s; }
+.reel.open { opacity: 1; visibility: visible; }
+.reel-bars { position: absolute; z-index: 3; left: var(--pad); right: var(--pad); top: 18px; display: flex; gap: 6px; }
+.reel-bars span { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.22); overflow: hidden; }
+.reel-bars i { display: block; height: 100%; width: 0; background: #fff; }
+.reel-close { position: absolute; z-index: 4; right: var(--pad); top: 34px; }
+.reel-slide { position: absolute; inset: 0; display: grid; align-content: center; padding: 90px var(--pad) 60px; opacity: 0; transition: opacity .6s var(--ease); }
+.reel-slide.on { opacity: 1; }
+.reel-slide img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) brightness(.35); transform: scale(1.08); transition: transform 6s linear; }
+.reel-slide.on img.bg { transform: scale(1); }
+.reel-slide .t { position: relative; max-width: 1000px; }
+.reel-slide small { color: var(--muted); font-size: .8rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; }
+.reel-slide h3 { margin: 16px 0 0; font-size: clamp(56px, 10vw, 150px); }
+.reel-slide p { margin: 18px 0 0; max-width: 560px; color: var(--soft); font-size: 1.1rem; line-height: 1.6; }
+.reel-tap { position: absolute; z-index: 2; top: 0; bottom: 0; width: 35%; background: none; border: 0; cursor: pointer; }
+.reel-tap.prev { left: 0; } .reel-tap.next { right: 0; }
+.reel-hint { position: absolute; z-index: 3; left: var(--pad); bottom: 22px; color: #555; font-size: .78rem; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 960px) {
+  .links, .who-btn span, .nav-book { display: none; }
+  .burger { display: grid; }
+  .plans { grid-template-columns: 1fr; max-width: 520px; }
+  .about { grid-template-columns: 1fr; }
+  .about-img { max-width: 420px; }
+}
+@media (max-width: 640px) {
+  .billboard { min-height: 92svh; }
+  .bb-img { object-position: 58% 20%; }
+  .billboard::after { background: linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.35) 40%, rgba(0,0,0,.92) 72%, #000 100%); }
+  .bb-rating { display: none; }
+  .bb-actions .btn { flex: 1 1 auto; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3) { border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .row-nav { display: none; }
+  .card { width: 76vw; }
+  .top { width: 84vw; }
+  .episode { grid-template-columns: 40px 1fr; gap: 14px; }
+  .episode .len { grid-column: 2; }
+  .m-more .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  .rv { opacity: 1; transform: none; }
+  .op-name span { transform: none; } .op-logo, .op-sub, .op-enter { opacity: 1; transform: none; } .op-line { width: min(420px, 70vw); }
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- ===================== OPENING ===================== -->
+<div class="opening" id="opening" role="dialog" aria-label="Opening">
+  <div class="op-stage">
+    <img class="op-logo" src="assets/logo.svg" alt="" width="74" height="68">
+    <div class="op-name display" aria-label="Sameer Saifi" id="opName"></div>
+    <div class="op-line" aria-hidden="true"></div>
+    <div class="op-sub">The Series</div>
+    <button class="btn btn-white op-enter" type="button" id="opEnter">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>Enter
+    </button>
+  </div>
+  <button class="op-skip" type="button" id="opSkip">Skip intro</button>
+</div>
+
+<!-- ===================== WHO'S WATCHING ===================== -->
+<div class="who" id="who" role="dialog" aria-modal="true" aria-labelledby="whoTitle">
+  <div class="who-in">
+    <h2 id="whoTitle">Who’s watching?</h2>
+    <p>Pick a profile. The episodes reorder for you.</p>
+    <div class="profiles">
+      <button class="profile" type="button" data-profile="client"><span class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8h13l-1.1 13H6.6L5.5 8Z"/><path d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/></svg></span><b>Client</b><small>I need a store</small></button>
+      <button class="profile" type="button" data-profile="recruiter"><span class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><b>Recruiter</b><small>Hiring talent</small></button>
+      <button class="profile" type="button" data-profile="developer"><span class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/></svg></span><b>Developer</b><small>Show me the build</small></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Back to top"><img src="assets/logo.svg" alt="" width="30" height="28"><b>Sameer Saifi</b></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#originals">Originals</a><a href="#experiences">Web Experiences</a><a href="#services">Services</a><a href="#plans">Plans</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-white nav-book" data-book href="#contact">Book a call</a>
+      <button class="who-btn" type="button" id="whoBtn" aria-label="Switch profile"><i id="whoInitial">C</i><span id="whoName">Client</span></button>
+      <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="mmenu" id="mmenu" aria-label="Mobile">
+  <a href="#originals">Originals</a><a href="#experiences">Web Experiences</a><a href="#services">Services</a><a href="#plans">Plans</a><a href="#contact">Contact</a>
+</nav>
+
+<main id="top">
+  <!-- ===================== BILLBOARD ===================== -->
+  <section class="billboard" aria-label="Featured">
+    <img class="bb-img" src="assets/billboard.webp" alt="Sameer Saifi seated in a black armchair" width="1672" height="941" fetchpriority="high">
+    <div class="bb-copy">
+      <span class="bb-label rv"><img src="assets/logo.svg" alt="" width="20" height="18">S · Series</span>
+      <h1 class="display bb-title rv">Sameer <span>Saifi</span></h1>
+      <div class="bb-meta rv"><b>Web Developer &amp; CRO Expert</b><span class="chip">4+ Seasons</span><span class="chip">Shopify</span><span class="chip">CRO</span><span class="chip">HD</span></div>
+      <p class="bb-syn rv" id="tagline">I don’t just build stores. I design sales.</p>
+      <div class="bb-actions rv">
+        <button class="btn btn-white" type="button" id="playIntro"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>Play Intro</button>
+        <a class="btn btn-grey" href="#pilot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>More Info</a>
+        <a class="btn btn-line" data-book href="#contact">Book a 15-min call</a>
+      </div>
+    </div>
+    <div class="bb-rating" aria-hidden="true"><b>98%</b> client retention</div>
+  </section>
+
+  <!-- Sections below are reordered by the chosen profile -->
+  <div id="sections">
+
+    <section class="section" id="originals" data-sec="originals" aria-labelledby="h-originals">
+      <div class="row-head"><div><h2 id="h-originals">Shopify Originals</h2><p>Stores built to sell. Tap a poster for the episode.</p></div>
+        <div class="row-nav"><button type="button" data-scroll="-1" aria-label="Scroll left"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-scroll="1" aria-label="Scroll right"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+      <div class="rail" data-rail="originals"></div>
+    </section>
+
+    <section class="section" id="experiences" data-sec="experiences" aria-labelledby="h-exp">
+      <div class="row-head"><div><h2 id="h-exp">Web Experiences</h2><p>3D, scroll and motion. Websites that feel like films.</p></div>
+        <div class="row-nav"><button type="button" data-scroll="-1" aria-label="Scroll left"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-scroll="1" aria-label="Scroll right"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+      <div class="rail" data-rail="experiences"></div>
+    </section>
+
+    <section class="section" id="services" data-sec="services" aria-labelledby="h-services">
+      <div class="row-head"><div><h2 id="h-services">Top 4 Services Today</h2><p>Creative website services for dropshippers, brands and businesses.</p></div></div>
+      <div class="rail" id="topRail"></div>
+    </section>
+
+    <section class="section" id="ratings" data-sec="ratings" aria-labelledby="h-ratings">
+      <div class="row-head"><div><h2 id="h-ratings">Ratings &amp; Reach</h2><p>The numbers behind the work.</p></div></div>
+      <div class="stats">
+        <div class="stat rv"><b data-count="24" data-suffix="K">0</b><span>Total views generated</span></div>
+        <div class="stat rv"><b data-count="250" data-suffix="+">0</b><span>Websites delivered</span></div>
+        <div class="stat rv"><b data-count="1" data-suffix="M+">0</b><span>Revenue driven for clients</span></div>
+        <div class="stat rv"><b data-count="98" data-suffix="%">0</b><span>Client retention rate</span></div>
+      </div>
+      <div class="logos" aria-label="Worked with Adsalign, TapnTrusts, Saekos, BabyNinja, NJ Sports and Lumzo">
+        <div class="logos-row" id="logos"></div>
+      </div>
+    </section>
+
+    <section class="section" id="pilot" data-sec="pilot" aria-labelledby="h-pilot">
+      <div class="about">
+        <div class="about-img rv"><img src="assets/portrait.webp" alt="Portrait of Sameer Saifi" width="700" height="1167" loading="lazy"></div>
+        <div class="rv">
+          <h2 class="display" id="h-pilot">I don’t just build stores. <span>I design sales.</span></h2>
+          <p>I’m a Shopify developer obsessed with clean design, smooth shopping and the small details that turn browsers into buyers. With <strong>4+ years</strong> of building online stores, from custom sections to complete store builds, I create stores that look premium, load fast, and sell.</p>
+          <p>Every project starts with your customers. I listen first, build second. The result? A store that feels like your brand, works beautifully on mobile, and keeps visitors moving toward checkout.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="seasons" data-sec="seasons" aria-labelledby="h-seasons">
+      <div class="row-head"><div><h2 id="h-seasons">How Every Project Plays Out</h2><p>One season, four episodes. The same on every build.</p></div></div>
+      <div class="season rv">
+        <div class="season-top"><b>Season 1 · Your Store</b><span>4 episodes</span></div>
+        <div id="episodes"></div>
+      </div>
+    </section>
+
+    <section class="section" id="plans" data-sec="plans" aria-labelledby="h-plans">
+      <div class="row-head"><div><h2 id="h-plans">Choose Your Plan</h2><p>Simple, honest packages. One-time payment.</p></div></div>
+      <div class="plans" id="planList"></div>
+    </section>
+
+    <section class="section" id="faq" data-sec="faq" aria-labelledby="h-faq">
+      <div class="row-head"><div><h2 id="h-faq">Questions? Answered.</h2></div></div>
+      <div class="faq" id="faqList"></div>
+    </section>
+  </div>
+
+  <!-- ===================== TO BE CONTINUED ===================== -->
+  <section class="tbc" id="contact" aria-labelledby="h-tbc">
+    <span class="avail rv"><i aria-hidden="true"></i>Available for new projects</span>
+    <h2 class="display rv" id="h-tbc">To be continued<span class="dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></h2>
+    <p class="rv">Your store deserves better sales. From quick Shopify setups to fully custom brand stores, let’s build a store your customers love to buy from.</p>
+    <div class="acts rv">
+      <a class="btn btn-white" data-book href="#contact">Start your project</a>
+      <a class="btn btn-line" id="mailBtn" href="#contact">Email me</a>
+    </div>
+    <div class="socials rv" id="socials"></div>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year">2026</span> Sameer Saifi. All rights reserved.</span>
+  <span class="credit"><i aria-hidden="true"></i>Created by <strong>Sameer Saifi</strong></span>
+</footer>
+
+<!-- Project overlay -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal" id="modal">
+    <button class="m-close" type="button" id="mClose" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="m-art" id="mArt"></div>
+    <div class="m-body">
+      <h3 class="display" id="mTitle"></h3>
+      <div class="m-meta" id="mMeta"></div>
+      <p id="mDesc"></p>
+      <div class="m-acts" id="mActs"></div>
+      <div class="m-more"><h4>More like this</h4><div class="grid" id="mMore"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Play Intro reel -->
+<div class="reel" id="reel" role="dialog" aria-modal="true" aria-label="Play intro">
+  <div class="reel-bars" id="reelBars"></div>
+  <button class="m-close reel-close" type="button" id="reelClose" aria-label="Close intro"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div id="reelSlides"></div>
+  <button class="reel-tap prev" type="button" id="reelPrev" aria-label="Previous"></button>
+  <button class="reel-tap next" type="button" id="reelNext" aria-label="Next"></button>
+  <span class="reel-hint">Space pauses · ← → to skip · Esc to close</span>
+</div>
+
+<script>
+/* ======================================================================
+   EDIT YOUR DETAILS HERE
+   ====================================================================== */
+var CONFIG = {
+  bookingLink: 'https://cal.com/sameer-saifi-9ci6kx',
+  email: 'samsaifi2526@gmail.com',
+  instagram: 'https://www.instagram.com/',   // replace with your Instagram profile link
+  x: 'https://x.com/',                       // replace with your X profile link
+  linkedin: 'https://www.linkedin.com/',     // replace with your LinkedIn profile link
+  gallery: 'https://sameersaifi07.github.io/Website-I-ve-Built/'
+};
+var GALLERY = CONFIG.gallery;
+
+var ORIGINALS = [
+  { title: 'TapnTrust', img: 'assets/work/tapntrust.webp', url: 'https://tapntrust.in/', tags: ['Shopify', 'NFC & QR', 'Reviews'],
+    desc: 'One tap, more reviews. A Shopify store for smart review stands that let customers leave a Google review with a single tap or scan.' },
+  { title: 'Baby Ninja', img: 'assets/work/babyninja.webp', url: 'https://babyninja.in/', tags: ['Shopify', 'Kids Fashion', 'Mobile-first'],
+    desc: 'A playful, mobile-first Shopify store for a kids’ brand, with festive collections, bright storytelling and a quick path to checkout.' },
+  { title: 'Lumzo', img: 'assets/work/lumzo.webp', url: 'https://lumzo.in/', tags: ['Shopify', 'Multi-category', 'Offers'],
+    desc: 'An everyday essentials store across baby care, toys, beauty and home, with bestsellers, reels, offer timers and trust badges built in.' },
+  { title: 'Saekos', img: 'assets/work/saekos.webp', url: 'https://saekos.com/', tags: ['Shopify', 'Kids Learning', 'D2C'],
+    desc: 'Screen-free busy books for toddlers. A clean D2C store that shows parents exactly how each activity book helps their child learn.' },
+  { title: 'NJ Sports', img: '', url: 'https://nj-info.in/', tags: ['Landing Page', 'Community', 'Telegram'],
+    desc: 'A cricket and football community landing page: live match threads, real analysis and a one-tap path into the Telegram channel.' }
+];
+
+var EXPERIENCES = [
+  { title: 'Kage', img: 'assets/work/kage.webp', url: GALLERY + 'kage/', tags: ['Three.js', 'Scroll Scenes', 'Landing Page'],
+    desc: 'A five-chapter night walk through a mountain temple: a live Three.js world, scroll-driven scenes and layered foreground art.' },
+  { title: 'Works Wheel', img: 'assets/work/works-wheel.webp', url: GALLERY + 'works-wheel/', tags: ['3D', 'Interactive', 'Portfolio'],
+    desc: 'A portfolio you turn. Nine pieces sit in a ring that opens into a 3D drum as you scroll, drag or use the arrow keys.' },
+  { title: 'Forty-Four', img: 'assets/work/lewis-hamilton.webp', url: GALLERY + 'lewis-hamilton/', tags: ['GSAP', 'Fan Tribute', 'Motion'],
+    desc: 'An unofficial fan tribute to a racing career: warp-speed hero, a pinned horizontal timeline, count-up stats and a circuits slider.' },
+  { title: 'Planet Jumping', img: 'assets/work/planet-jumping.webp', url: GALLERY + 'planet-jumping/', tags: ['3D', 'Space Portal', 'Interactive'],
+    desc: 'A 3D space portal that hops from planet to planet, with interactive animation at every stop.' },
+  { title: 'VEX', img: 'assets/work/vex.webp', url: GALLERY + 'vex/', tags: ['Video Hero', 'Liquid Glass UI'],
+    desc: 'A cinematic video hero with a liquid-glass interface: shaping tomorrow with vision and action.' },
+  { title: 'Ladakh: Parallax Story', img: 'assets/work/india.webp', url: GALLERY + 'india/', tags: ['Parallax', 'Scroll Animation', 'Travel'],
+    desc: 'A journey through Ladakh told in layered parallax: mountains, monasteries and type that move as you scroll.' }
+];
+
+var SERVICES = [
+  { title: 'Shopify Development', text: 'Your store is your best closer. I build fast, premium stores that move every visitor toward one thing: checkout.', tags: ['Custom storefronts', 'High-converting layouts', 'Custom sections', 'Mobile-first'] },
+  { title: 'Website Design & Development', text: 'First impressions sell. I design clean, responsive websites that make your brand look trusted at first scroll.', tags: ['Responsive design', 'Dynamic transitions', 'Brand-led visuals', 'Clear navigation'] },
+  { title: 'Conversion Optimisation', text: 'Traffic isn’t the problem. I fix the friction in your product pages and checkout so more visitors become buyers.', tags: ['Product pages', 'Checkout flow', 'CTA optimisation', 'UX audits'] },
+  { title: 'Custom Website Templates', text: 'Launch like a premium brand. My original templates are built to look sharp, load fast, and sell from day one.', tags: ['Original designs', 'Easy to edit', 'Reusable sections', 'Fast launch'] }
+];
+
+var EPISODES = [
+  { title: 'The Call', len: '15 min', text: 'A quick call about your brand, your customers and the stores you love. You get a clear plan and timeline before anything starts.' },
+  { title: 'The Design', len: 'Week 1', text: 'Layouts built around your products: clean, premium and mobile-first, with the path to checkout planned from the first screen.' },
+  { title: 'The Build', len: 'Weeks 1–3', text: 'Your store comes to life inside your own Shopify account, with custom sections you can edit and progress shared at every stage.' },
+  { title: 'The Launch', len: 'Day 7 to week 4', text: 'Speed, payments and shipping checked, then launch. Premium plans continue with 30 days of support and conversion fixes.' }
+];
+
+var PLANS = [
+  { name: 'Starter', price: '9,999', features: ['Shopify store setup', 'Premium theme customisation', 'Up to 5 pages', 'Mobile-optimised design', 'Razorpay / UPI & shipping setup', '7-day delivery'] },
+  { name: 'Growth', price: '19,999', pop: '2 spots left', features: ['Custom-designed Shopify store', 'Up to 10 pages', 'Custom sections you can edit', 'High-converting product pages', 'Speed optimisation', '2 rounds of revisions'] },
+  { name: 'Premium', price: '29,999', features: ['Fully custom store design', 'Unlimited pages & sections', 'Conversion (CRO) audit + fixes', 'Checkout & cart optimisation', 'Speed + SEO setup', '30 days of post-launch support'] }
+];
+
+var FAQ = [
+  ['What kind of Shopify work do you do?', 'Everything from new store setups to fully custom builds: theme customisation, custom sections, product page redesigns and conversion fixes. Whether you’re a new dropshipper or an established brand, I’ll build a store that looks premium and sells.'],
+  ['What do I need to get started?', 'Just your Shopify login (collaborator access), logo, product details and a few stores you love. Don’t have everything ready? No problem. We’ll figure it out together on a quick 15-minute call.'],
+  ['Can you redesign my existing Shopify store?', 'Yes. I can refresh your current theme or rebuild it completely, without losing your products, orders or customer data.'],
+  ['How many revisions do I get?', 'Starter includes 1 round, Growth includes 2, and Premium continues with 30 days of post-launch support. I share progress at every stage, so there are no surprises at the end.'],
+  ['How long does it take to build my store?', 'Starter stores are ready in 7 days. Growth and Premium projects usually take 2–4 weeks, depending on pages and custom features. You’ll get a clear timeline before we begin.'],
+  ['Who owns the store after it’s built?', 'You do, 100%. The store, design, content and custom sections are fully yours. I build inside your Shopify account, and once the final payment is made, everything is handed over completely.']
+];
+
+var CLIENTS = [['client-1', 'Adsalign'], ['client-2', 'TapnTrusts'], ['client-3', 'Saekos'], ['client-4', 'BabyNinja'], ['client-5', 'NJ Sports'], ['client-6', 'Lumzo']];
+
+// Each profile reorders the sections and changes the hero line.
+var PROFILES = {
+  client:    { name: 'Client',    order: ['originals', 'services', 'ratings', 'pilot', 'plans', 'seasons', 'experiences', 'faq'],
+               tagline: 'I don’t just build stores. I design sales. Fast, premium Shopify stores that turn browsers into buyers.' },
+  recruiter: { name: 'Recruiter', order: ['pilot', 'ratings', 'originals', 'experiences', 'services', 'seasons', 'faq', 'plans'],
+               tagline: 'Web developer and CRO expert with 4+ years of building Shopify stores and immersive websites.' },
+  developer: { name: 'Developer', order: ['experiences', 'originals', 'services', 'seasons', 'pilot', 'ratings', 'faq', 'plans'],
+               tagline: 'Three.js worlds, scroll scenes, GSAP motion and custom Shopify sections. Built by hand, shipped fast.' }
+};
+
+/* ====================================================================== */
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var $ = function (id) { return document.getElementById(id); };
+  var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  var session = { get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
+  $('year').textContent = new Date().getFullYear();
+
+  // ---------- Links from CONFIG ----------
+  document.querySelectorAll('[data-book]').forEach(function (a) { a.href = CONFIG.bookingLink; a.target = '_blank'; a.rel = 'noopener'; });
+  $('mailBtn').href = 'mailto:' + CONFIG.email;
+  $('mailBtn').textContent = CONFIG.email;
+  var ICONS = {
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>',
+    x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3l-6.6 7.5L22 21h-6.1l-4.8-6.2L5.6 21h-3l7.1-8.1L2.2 3h6.2l4.3 5.7zm-1 16.2h1.7L7.3 4.7H5.5z"/></svg>',
+    linkedin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.5M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>'
+  };
+  $('socials').innerHTML =
+    '<a href="' + esc(CONFIG.instagram) + '" target="_blank" rel="noopener" aria-label="Instagram">' + ICONS.instagram + '</a>' +
+    '<a href="' + esc(CONFIG.x) + '" target="_blank" rel="noopener" aria-label="X">' + ICONS.x + '</a>' +
+    '<a href="' + esc(CONFIG.linkedin) + '" target="_blank" rel="noopener" aria-label="LinkedIn">' + ICONS.linkedin + '</a>' +
+    '<a href="mailto:' + esc(CONFIG.email) + '" aria-label="Email">' + ICONS.mail + '</a>';
+
+  // ---------- Rows ----------
+  var ALL = ORIGINALS.map(function (p) { p.kind = 'Shopify Original'; return p; }).concat(EXPERIENCES.map(function (p) { p.kind = 'Web Experience'; return p; }));
+  var artHTML = function (p) { return p.img ? '<img src="' + esc(p.img) + '" alt="" loading="lazy" decoding="async">' : '<span class="ph">' + esc(p.title) + '</span>'; };
+  function cards(list, offset) {
+    return list.map(function (p, i) {
+      return '<button class="card" type="button" data-p="' + (offset + i) + '" aria-label="' + esc(p.title) + ', open details">' +
+        '<span class="art">' + artHTML(p) + (i === 0 ? '<span class="badge">New</span>' : '') +
+        '<span class="ep">▶ Episode ' + (i + 1) + '</span></span>' +
+        '<h3>' + esc(p.title) + '</h3><span class="tags">' + p.tags.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join('') + '</span></button>';
+    }).join('');
+  }
+  document.querySelector('[data-rail="originals"]').innerHTML = cards(ORIGINALS, 0);
+  document.querySelector('[data-rail="experiences"]').innerHTML = cards(EXPERIENCES, ORIGINALS.length);
+  $('topRail').innerHTML = SERVICES.map(function (s, i) {
+    return '<div class="top rv"><span class="n" aria-hidden="true">' + (i + 1) + '</span><div class="box"><div><h3>' + esc(s.title) + '</h3><p>' + esc(s.text) + '</p></div>' +
+      '<div class="tags">' + s.tags.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join('') + '</div></div></div>';
+  }).join('');
+  $('episodes').innerHTML = EPISODES.map(function (e, i) {
+    return '<div class="episode"><span class="i">' + (i + 1) + '</span><div><h3>' + esc(e.title) + '</h3><p>' + esc(e.text) + '</p></div><span class="len">' + esc(e.len) + '</span></div>';
+  }).join('');
+  $('planList').innerHTML = PLANS.map(function (p) {
+    return '<div class="plan rv' + (p.pop ? ' pop' : '') + '">' + (p.pop ? '<span class="ribbon">' + esc(p.pop) + '</span>' : '') +
+      '<h3>' + esc(p.name) + '</h3><div class="price"><small>₹</small>' + esc(p.price) + '</div><div class="per">One-time</div>' +
+      '<ul>' + p.features.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul>' +
+      '<a class="btn ' + (p.pop ? 'btn-white' : 'btn-line') + '" href="' + esc(CONFIG.bookingLink) + '" target="_blank" rel="noopener">Get started</a></div>';
+  }).join('');
+  $('faqList').innerHTML = FAQ.map(function (f) {
+    return '<details class="rv"><summary>' + esc(f[0]) + '<i aria-hidden="true"></i></summary><div class="ans"><div><p>' + esc(f[1]) + '</p></div></div></details>';
+  }).join('');
+  var logoHTML = CLIENTS.map(function (c) { return '<img src="assets/clients/' + c[0] + '.webp" alt="' + esc(c[1]) + '" height="30" loading="lazy">'; }).join('');
+  $('logos').innerHTML = logoHTML + logoHTML.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"');
+
+  document.querySelectorAll('[data-scroll]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var rail = b.closest('.section').querySelector('.rail');
+      rail.scrollBy({ left: Number(b.dataset.scroll) * rail.clientWidth * .8, behavior: 'smooth' });
+    });
+  });
+
+  // ---------- Reveal + count-up ----------
+  function counter(el) {
+    var end = Number(el.dataset.count), suffix = el.dataset.suffix || '', t0 = performance.now();
+    (function step(t) {
+      var k = Math.min(1, (t - t0) / 1600), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(end * e) + suffix;
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  var io = 'IntersectionObserver' in window && !reduced ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(counter);
+      io.unobserve(e.target);
+    });
+  }, { threshold: .15, rootMargin: '0px 0px -40px 0px' }) : null;
+  function observe() {
+    document.querySelectorAll('.rv:not(.in)').forEach(function (el) {
+      if (io) io.observe(el); else { el.classList.add('in'); el.querySelectorAll('[data-count]').forEach(function (c) { c.textContent = c.dataset.count + (c.dataset.suffix || ''); }); }
+    });
+  }
+
+  // ---------- Profiles ----------
+  var who = $('who');
+  function applyProfile(key) {
+    var p = PROFILES[key] || PROFILES.client;
+    var box = $('sections');
+    p.order.forEach(function (id) { var s = box.querySelector('[data-sec="' + id + '"]'); if (s) box.appendChild(s); });
+    $('tagline').textContent = p.tagline;
+    $('whoName').textContent = p.name;
+    $('whoInitial').textContent = p.name.charAt(0);
+    store.set('series-profile', key);
+  }
+  function openWho() { who.classList.add('open'); document.body.classList.add('locked'); setTimeout(function () { who.querySelector('.profile').focus(); }, 300); }
+  function closeWho() { who.classList.remove('open'); document.body.classList.remove('locked'); document.documentElement.classList.add('ready'); observe(); }
+  document.querySelectorAll('[data-profile]').forEach(function (b) {
+    b.addEventListener('click', function () { applyProfile(b.dataset.profile); closeWho(); window.scrollTo(0, 0); });
+  });
+  $('whoBtn').addEventListener('click', openWho);
+  applyProfile(store.get('series-profile') || 'client');
+
+  // ---------- Opening sequence (once per visit) ----------
+  var opening = $('opening');
+  $('opName').innerHTML = 'Sameer Saifi'.split('').map(function (ch, i) {
+    return '<span style="animation-delay:' + (.9 + i * .06).toFixed(2) + 's">' + (ch === ' ' ? '&nbsp;' : ch) + '</span>';
+  }).join('');
+  function endOpening() {
+    if (opening.classList.contains('gone')) return;
+    opening.classList.add('gone');
+    session.set('series-opened', '1');
+    if (store.get('series-profile-chosen')) { closeWho(); } else { store.set('series-profile-chosen', '1'); openWho(); }
+  }
+  if (session.get('series-opened') || reduced) { opening.classList.add('gone'); closeWho(); }
+  else { $('opEnter').addEventListener('click', endOpening); $('opSkip').addEventListener('click', endOpening); setTimeout(function () { $('opEnter').focus(); }, 3200); }
+
+  // ---------- Nav: solid on scroll, hide on scroll down ----------
+  var nav = $('nav'), lastY = 0;
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    nav.classList.toggle('solid', y > 40);
+    nav.classList.toggle('hide', y > 300 && y > lastY && !document.body.classList.contains('menu-open'));
+    lastY = y;
+  }, { passive: true });
+  $('burger').addEventListener('click', function () {
+    var open = document.body.classList.toggle('menu-open');
+    $('burger').setAttribute('aria-expanded', String(open));
+  });
+  document.querySelectorAll('#mmenu a').forEach(function (a) { a.addEventListener('click', function () { document.body.classList.remove('menu-open'); $('burger').setAttribute('aria-expanded', 'false'); }); });
+
+  // ---------- Project overlay ----------
+  var overlay = $('overlay'), lastFocus = null;
+  function openProject(i) {
+    var p = ALL[i]; if (!p) return;
+    lastFocus = document.activeElement;
+    $('mArt').innerHTML = p.img ? '<img src="' + esc(p.img) + '" alt="' + esc(p.title) + '">' : '<span class="ph">' + esc(p.title) + '</span>';
+    $('mTitle').textContent = p.title;
+    $('mMeta').innerHTML = '<span class="chip">' + esc(p.kind) + '</span>' + p.tags.map(function (t) { return '<span class="chip">' + esc(t) + '</span>'; }).join('');
+    $('mDesc').textContent = p.desc;
+    $('mActs').innerHTML = '<a class="btn btn-white" href="' + esc(p.url) + '" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>Watch it live</a>' +
+      '<a class="btn btn-line" href="' + esc(CONFIG.bookingLink) + '" target="_blank" rel="noopener">Book a call</a>';
+    var more = ALL.map(function (q, j) { return { q: q, j: j }; }).filter(function (o) { return o.j !== i && o.q.kind === p.kind; }).slice(0, 3);
+    $('mMore').innerHTML = more.map(function (o) {
+      return '<button type="button" data-p="' + o.j + '">' + (o.q.img ? '<img src="' + esc(o.q.img) + '" alt="" loading="lazy">' : '') + '<span>' + esc(o.q.title) + '</span></button>';
+    }).join('');
+    $('modal').scrollTop = 0;
+    overlay.classList.add('open'); document.body.classList.add('locked');
+    setTimeout(function () { $('mClose').focus(); }, 50);
+  }
+  function closeProject() { overlay.classList.remove('open'); document.body.classList.remove('locked'); if (lastFocus) lastFocus.focus(); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-p]'); if (b) openProject(Number(b.dataset.p));
+  });
+  $('mClose').addEventListener('click', closeProject);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeProject(); });
+
+  // ---------- Play Intro reel ----------
+  var SLIDES = [
+    { small: 'Previously on', title: 'Sameer Saifi', text: 'Web developer and CRO expert. 4+ years of building Shopify stores that look premium, load fast and sell.', img: 'assets/billboard.webp' },
+    { small: 'Season highlights', title: '250+ websites', text: 'Delivered for dropshippers, D2C brands and businesses across India, with 98% of clients coming back.', img: 'assets/work/tapntrust.webp' },
+    { small: 'Now streaming', title: 'Shopify Originals', text: 'TapnTrust, Baby Ninja, Lumzo, Saekos. Stores designed around one thing: checkout.', img: 'assets/work/babyninja.webp' },
+    { small: 'Also starring', title: 'Web Experiences', text: 'Three.js temples, 3D wheels, space portals and parallax journeys. Websites that feel like films.', img: 'assets/work/kage.webp' },
+    { small: 'Next episode', title: 'Your store', text: 'Book a free 15-minute call and let’s plan the season your brand deserves.', img: 'assets/portrait.webp' }
+  ];
+  var reel = $('reel'), slideEls, barEls, cur = 0, paused = false, t0 = 0, raf = 0, DUR = 5200;
+  $('reelSlides').innerHTML = SLIDES.map(function (s) {
+    return '<div class="reel-slide"><img class="bg" src="' + esc(s.img) + '" alt="" loading="lazy"><div class="t"><small>' + esc(s.small) + '</small><h3 class="display">' + esc(s.title) + '</h3><p>' + esc(s.text) + '</p></div></div>';
+  }).join('');
+  $('reelBars').innerHTML = SLIDES.map(function () { return '<span><i></i></span>'; }).join('');
+  slideEls = [].slice.call(reel.querySelectorAll('.reel-slide'));
+  barEls = [].slice.call(reel.querySelectorAll('.reel-bars i'));
+  function show(i) {
+    if (i >= SLIDES.length) { closeReel(); return; }
+    cur = Math.max(0, i); t0 = performance.now(); paused = false;
+    slideEls.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
+    barEls.forEach(function (b, k) { b.style.width = k < cur ? '100%' : '0'; });
+  }
+  function loop(t) {
+    raf = requestAnimationFrame(loop);
+    if (paused) { t0 = t - parseFloat(barEls[cur].style.width || 0) / 100 * DUR; return; }
+    var k = Math.min(1, (t - t0) / DUR);
+    barEls[cur].style.width = (k * 100) + '%';
+    if (k >= 1) show(cur + 1);
+  }
+  function openReel() { lastFocus = document.activeElement; reel.classList.add('open'); document.body.classList.add('locked'); show(0); cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); setTimeout(function () { $('reelClose').focus(); }, 50); }
+  function closeReel() { reel.classList.remove('open'); document.body.classList.remove('locked'); cancelAnimationFrame(raf); if (lastFocus) lastFocus.focus(); }
+  $('playIntro').addEventListener('click', openReel);
+  $('reelClose').addEventListener('click', closeReel);
+  $('reelPrev').addEventListener('click', function () { show(cur - 1); });
+  $('reelNext').addEventListener('click', function () { show(cur + 1); });
+
+  // ---------- Keyboard ----------
+  document.addEventListener('keydown', function (e) {
+    if (!opening.classList.contains('gone') && (e.key === 'Enter' || e.key === 'Escape')) { e.preventDefault(); endOpening(); return; }
+    if (reel.classList.contains('open')) {
+      if (e.key === 'Escape') closeReel();
+      else if (e.key === 'ArrowRight') show(cur + 1);
+      else if (e.key === 'ArrowLeft') show(cur - 1);
+      else if (e.key === ' ') { e.preventDefault(); paused = !paused; }
+      return;
+    }
+    if (overlay.classList.contains('open') && e.key === 'Escape') closeProject();
+    if (document.body.classList.contains('menu-open') && e.key === 'Escape') { document.body.classList.remove('menu-open'); }
+  });
+})();
+</script>
+</body>
+</html>
