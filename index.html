@@ -177,7 +177,9 @@ em.serif, .serif { font-family: var(--serif); font-style: italic; font-weight: 4
 
 /* Tilted portrait card with badge and floating panels (same look as the Framer Motion site) */
 /* While you scroll past the hero the card drifts down and turns from -4° through straight to +6°, like the Framer Motion site */
-.photo-wrap { position: relative; justify-self: center; width: min(430px, 82vw); perspective: 1100px; transform: translateY(var(--cy, 0px)); }
+.photo-wrap { position: relative; justify-self: center; width: min(430px, 82vw); perspective: 1100px; translate: 0 var(--cy, 0px); }
+/* The text side rises and fades as you scroll away from the hero */
+.hero-copy { translate: 0 var(--hy, 0px); opacity: var(--ho, 1); }
 .photo { position: relative; aspect-ratio: 4 / 5; border-radius: 22px; padding: 12px; background: linear-gradient(160deg, #2A2A2A, #0E0E0E); border: 1px solid #333;
   transform: rotate(var(--rot, -4deg)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d; transition: transform .6s var(--ease);
   box-shadow: 0 50px 90px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.04), 0 30px 120px -40px rgba(255,255,255,.12); animation: float 7s ease-in-out infinite; }
@@ -568,7 +570,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-i
   <section class="hero" id="hero" aria-label="Introduction">
     <canvas class="wave" id="wave" aria-hidden="true"></canvas>
     <div class="hero-grid">
-      <div>
+      <div class="hero-copy" id="heroCopy">
         <span class="avail rv"><i class="gdot" aria-hidden="true"></i>Available for new projects</span>
         <h1 class="silver rv"><span class="serif">Sameer</span> Saifi</h1>
         <p class="role rv">Web Developer <span>&amp;</span> CRO Expert</p>
@@ -875,12 +877,15 @@ var PROFILES = {
   }
   window.addEventListener('scroll', function () { requestAnimationFrame(readTimeline); }, { passive: true });
 
-  // Hero card turns from -4° to +6° and drifts down as you scroll past the hero
-  var heroSec = $('hero'), photoWrap = $('photoWrap'), photoCard = $('photo');
+  // Scrolling away from the hero (same as the Framer Motion site): the card turns from -4° through straight to +6°
+  // and drifts down, while the text rises and fades out
+  var heroSec = $('hero'), photoWrap = $('photoWrap'), photoCard = $('photo'), heroCopy = $('heroCopy');
   function cardScroll() {
     var k = Math.min(1, Math.max(0, window.scrollY / Math.max(1, heroSec.offsetHeight)));
     photoCard.style.setProperty('--rot', (-4 + k * 10).toFixed(2) + 'deg');
     photoWrap.style.setProperty('--cy', (k * 120).toFixed(1) + 'px');
+    heroCopy.style.setProperty('--hy', (k * -140).toFixed(1) + 'px');
+    heroCopy.style.setProperty('--ho', Math.max(0, 1 - k / .7).toFixed(3));
   }
   if (!reduced) { window.addEventListener('scroll', function () { requestAnimationFrame(cardScroll); }, { passive: true }); cardScroll(); }
 
