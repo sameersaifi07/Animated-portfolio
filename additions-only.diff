@@ -1,0 +1,246 @@
+--- original.html	2026-10-30 16:42:04.198508361 +0000
++++ index.html	2026-10-30 16:45:23.744525006 +0000
+@@ -6,6 +6,20 @@
+ <title>Sameer Saifi — Web Developer &amp; CRO Expert</title>
+ <meta name="description" content="Sameer Saifi — Shopify developer and CRO expert building fast, premium, high-converting stores and immersive websites.">
+ <meta name="theme-color" content="#000000">
++<!-- ADDED: link previews on WhatsApp / LinkedIn / Instagram DMs -->
++<link rel="canonical" href="https://sameersaifi07.github.io/Animated-portfolio/">
++<meta property="og:type" content="website">
++<meta property="og:title" content="Sameer Saifi — Shopify Developer &amp; CRO Expert">
++<meta property="og:description" content="Fast, premium Shopify stores for Indian D2C brands. Custom builds, conversion fixes and 3D web experiences.">
++<meta property="og:url" content="https://sameersaifi07.github.io/Animated-portfolio/">
++<meta property="og:image" content="https://sameersaifi07.github.io/Animated-portfolio/billboard.webp">
++<meta name="twitter:card" content="summary_large_image">
++<meta name="twitter:title" content="Sameer Saifi — Shopify Developer &amp; CRO Expert">
++<meta name="twitter:description" content="Fast, premium Shopify stores for Indian D2C brands. Custom builds, conversion fixes and 3D web experiences.">
++<meta name="twitter:image" content="https://sameersaifi07.github.io/Animated-portfolio/billboard.webp">
++<script type="application/ld+json">
++{"@context":"https://schema.org","@type":"Person","name":"Sameer Saifi","jobTitle":"Shopify Developer & CRO Expert","url":"https://sameersaifi07.github.io/Animated-portfolio/","image":"https://sameersaifi07.github.io/Animated-portfolio/portrait.webp","email":"mailto:samsaifi2526@gmail.com","knowsAbout":["Shopify","Conversion rate optimisation","Web design","3D websites"],"address":{"@type":"PostalAddress","addressCountry":"IN"}}
++</script>
+ <meta name="gallery-title" content="Sameer Saifi — Portfolio">
+ <meta name="gallery-category" content="Portfolio, Interactive">
+ <link rel="icon" href="logo.svg" type="image/svg+xml">
+@@ -575,6 +589,60 @@
+   .words .w > span, .in-name .w > span { transform: none; }
+   .in-logo, .in-sub, .in-enter { opacity: 1; } .in-line { width: min(440px, 70vw); }
+ }
++
++/* ===================== ADDED: proof + lead capture =====================
++   Testimonials, result lines on projects, WhatsApp button and the lead form.
++   Everything above this line is untouched. */
++/* Result line under a project card (filled from RESULTS below) */
++.card .win { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; padding: 6px 10px; border-radius: 8px; background: #0F0F0F; border: 1px solid var(--line-2); font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: #fff; }
++.card .win i { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
++/* Result block inside the project details */
++.m-win { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
++.m-win div { padding: 16px; border-radius: 14px; background: var(--card-2); border: 1px solid var(--line-2); }
++.m-win b { display: block; font-size: 1.6rem; font-weight: 600; letter-spacing: -.03em; line-height: 1; }
++.m-win span { display: block; margin-top: 6px; color: var(--muted); font-size: .8rem; }
++/* Testimonials */
++.quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 30px var(--pad) 0; }
++.quote { display: flex; flex-direction: column; gap: 18px; padding: 28px; border-radius: 20px; background: var(--card); border: 1px solid var(--line-2); transition: transform .5s var(--ease), border-color .3s; }
++.quote:hover { transform: translateY(-6px); border-color: #4A4A4A; }
++.quote .stars { display: flex; gap: 3px; color: #fff; }
++.quote .stars svg { width: 16px; height: 16px; }
++.quote p { margin: 0; flex: 1; font-size: 1.02rem; line-height: 1.65; color: var(--soft); }
++.quote p::before { content: "\201C"; font-family: var(--serif); font-size: 2.2rem; line-height: 0; margin-right: 4px; color: #fff; vertical-align: -.3em; }
++.quote .who-q { display: flex; align-items: center; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line-2); }
++.quote .who-q i { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #fff, #9A9A9A); color: #000; font-style: normal; font-weight: 700; font-size: .9rem; flex: none; overflow: hidden; }
++.quote .who-q i img { width: 100%; height: 100%; object-fit: cover; }
++.quote .who-q b { display: block; font-size: .95rem; font-weight: 600; }
++.quote .who-q small { display: block; color: var(--muted); font-size: .8rem; margin-top: 2px; }
++.quote .who-q a { margin-left: auto; color: var(--muted); font-size: .78rem; border-bottom: 1px solid var(--line-3); white-space: nowrap; }
++.quote .who-q a:hover { color: #fff; border-color: #fff; }
++.quote .result { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px; background: #0F0F0F; border: 1px solid var(--line-2); font-family: var(--mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: #fff; align-self: flex-start; }
++.quote .result i { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
++/* WhatsApp: floating button + social icon */
++.wa-fab { position: fixed; z-index: 80; right: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 18px 0 14px; border-radius: 999px; background: #fff; color: #000; font-weight: 600; font-size: .92rem;
++  box-shadow: 0 18px 40px -14px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.15); transition: transform .4s var(--ease), box-shadow .3s; }
++.wa-fab:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -14px rgba(255,255,255,.25), 0 0 0 1px #fff; }
++.wa-fab svg { width: 22px; height: 22px; }
++.wa-fab[hidden] { display: none; }
++.socials a.wa svg { width: 20px; height: 20px; }
++/* Lead form (inside Contact) */
++.lead { margin: 44px auto 0; max-width: 680px; text-align: left; padding: clamp(22px, 3vw, 34px); border-radius: 22px; background: rgba(10, 10, 10, .72); border: 1px solid var(--line-2); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
++.lead h3 { margin: 0; font-size: 1.4rem; font-weight: 600; letter-spacing: -.02em; }
++.lead > p { margin: 8px 0 0; font-size: .95rem; color: var(--muted); text-align: left; max-width: none; }
++.lead form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
++.lead label { display: grid; gap: 6px; font-size: .8rem; color: var(--soft); }
++.lead label.full { grid-column: 1 / -1; }
++.lead input, .lead select, .lead textarea { width: 100%; min-height: 46px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line-2); background: #0A0A0A; color: #fff; font: inherit; font-size: .95rem; transition: border-color .25s; }
++.lead textarea { min-height: 96px; resize: vertical; }
++.lead input:focus, .lead select:focus, .lead textarea:focus { outline: 0; border-color: #fff; }
++.lead select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, #8C8C8C 50%), linear-gradient(135deg, #8C8C8C 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
++.lead .hp { position: absolute; left: -9999px; }
++.lead .lead-acts { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 6px; }
++.lead .lead-acts small { color: var(--muted); font-size: .78rem; }
++.lead .sent { grid-column: 1 / -1; display: none; padding: 14px 16px; border-radius: 12px; background: #0F0F0F; border: 1px solid var(--line-2); color: var(--soft); font-size: .92rem; }
++.lead .sent.on { display: block; }
++@media (max-width: 960px) { .quotes { grid-template-columns: 1fr; max-width: 560px; } .m-win { grid-template-columns: 1fr; } }
++@media (max-width: 640px) { .lead form { grid-template-columns: 1fr; } .wa-fab span { display: none; } .wa-fab { padding: 0 14px; } }
+ </style>
+ </head>
+ <body class="locked">
+@@ -743,6 +811,12 @@
+       <div class="head"><div><span class="mono">08 // <b>FAQ</b></span><h2 class="words" id="h-faq">Got <span class="serif">questions?</span></h2></div></div>
+       <div class="faq" id="faqList"></div>
+     </section>
++
++    <!-- ===================== ADDED: REVIEWS ===================== -->
++    <section class="section" id="reviews" data-sec="reviews" aria-labelledby="h-reviews" hidden>
++      <div class="head"><div><span class="mono">09 // <b>Reviews</b></span><h2 class="words" id="h-reviews">What clients <span class="serif">say</span></h2><p>Real words from the brands whose stores I built. Each one links to the live store.</p></div></div>
++      <div class="quotes" id="quotes"></div>
++    </section>
+   </div>
+ 
+   <!-- ===================== CONTACT ===================== -->
+@@ -756,9 +830,36 @@
+     </div>
+     <a class="mail rv" id="mail" href="#contact"></a>
+     <div class="socials rv" id="socials"></div>
++
++    <!-- ADDED: lead form. Asks for monthly ad spend so serious brands sort themselves out. -->
++    <div class="lead rv" id="lead">
++      <h3>Get a free 5-minute store teardown</h3>
++      <p>Send your store link. I record a short video with the 3 fixes I would make first. No pitch, no obligation.</p>
++      <form id="leadForm" novalidate>
++        <label>Your name<input type="text" name="name" autocomplete="name" required placeholder="Priya Sharma"></label>
++        <label>WhatsApp number<input type="tel" name="phone" autocomplete="tel" required placeholder="+91 98765 43210"></label>
++        <label class="full">Store URL<input type="url" name="store" inputmode="url" required placeholder="https://yourbrand.in"></label>
++        <label>Monthly ad spend<select name="spend" required><option value="" selected disabled>Choose one</option><option>Not running ads yet</option><option>Under ₹1 lakh</option><option>₹1–3 lakh</option><option>₹3–10 lakh</option><option>₹10 lakh+</option></select></label>
++        <label>What do you need?<select name="need" required><option value="" selected disabled>Choose one</option><option>New Shopify store</option><option>Redesign my existing store</option><option>Fix conversion / speed</option><option>Custom website or 3D site</option></select></label>
++        <label class="full">Anything else? (optional)<textarea name="message" placeholder="Biggest problem with the store right now…"></textarea></label>
++        <label class="hp" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
++        <div class="lead-acts">
++          <button class="btn btn-white" type="submit" id="leadSend">Send on WhatsApp
++            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
++          <small>Usually replies within a few hours, 7 days a week.</small>
++        </div>
++        <div class="sent" id="leadSent" role="status"></div>
++      </form>
++    </div>
+   </section>
+ </main>
+ 
++<!-- ADDED: floating WhatsApp button (shown only when CONFIG.whatsapp is filled in) -->
++<a class="wa-fab" id="waFab" href="#contact" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" hidden>
++  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4l-.5-.3-1.8-.9c-.3-.1-.4-.1-.6.2l-.9 1.1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5Z"/></svg>
++  <span>WhatsApp</span>
++</a>
++
+ <footer>
+   <span>© <span id="year">2026</span> Sameer Saifi. All rights reserved.</span>
+   <span class="credit">Created by <b>Sameer Saifi</b></span>
+@@ -891,6 +992,31 @@
+                tagline: '3D worlds, scroll scenes, GSAP motion and custom Shopify sections. Built by hand, shipped fast.' }
+ };
+ 
++/* ======================================================================
++   ADDED: fill these in. Nothing shows on the page until it is filled.
++   ====================================================================== */
++CONFIG.whatsapp = '';           // your number with country code, digits only, e.g. '919876543210'
++CONFIG.waText = 'Hi Sameer, I saw your portfolio. Can you do a free teardown of my store?';
++CONFIG.formEndpoint = '';       // optional: a Formspree / Web3Forms / Google Apps Script URL that accepts a JSON POST. Empty = the form opens WhatsApp (or email) with the details pre-filled.
++
++// One line of proof per project, shown on the card and in the details. Key = the project's title above.
++// Keep it short and real: a number a client gave you, a speed score, a timeline.
++// Example: 'Baby Ninja': { line: 'Mobile speed 41 → 92', stats: [['92', 'Mobile PageSpeed after'], ['41', 'PageSpeed before'], ['12 days', 'Build time']] }
++var RESULTS = {
++};
++
++// Real client reviews. Ask each client for 2–3 sentences on WhatsApp and paste them here with permission.
++// photo is optional (a square jpg/webp in this folder). link = the live store, so a visitor can verify it.
++// Example: { text: 'Our checkout was leaking on mobile; Sameer rebuilt the product page and cart in 10 days and the difference showed in the first week.', name: 'Geetam Goyal', role: 'Founder, Baby Ninja', link: 'https://babyninja.in/', result: 'Launched in 10 days', photo: '' }
++var REVIEWS = [
++];
++
++// The new Reviews section joins every visitor order; the client view gets it right after the stores.
++Object.keys(PROFILES).forEach(function (k) {
++  var o = PROFILES[k].order;
++  if (o.indexOf('reviews') === -1) { if (k === 'client') o.splice(o.indexOf('websites') + 1, 0, 'reviews'); else o.push('reviews'); }
++});
++
+ /* ====================================================================== */
+ (function () {
+   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+@@ -984,6 +1110,62 @@
+   $('faqList').innerHTML = FAQ.map(function (f) {
+     return '<details class="spot rv"><summary>' + esc(f[0]) + '<i aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary><div class="ans"><div><p>' + esc(f[1]) + '</p></div></div></details>';
+   }).join('');
++  // ---------- ADDED: reviews ----------
++  var STAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>';
++  if (REVIEWS.length) {
++    $('reviews').hidden = false;
++    $('quotes').innerHTML = REVIEWS.map(function (r) {
++      var initials = String(r.name || '').split(/\s+/).map(function (w) { return w.charAt(0); }).join('').slice(0, 2).toUpperCase();
++      return '<figure class="quote spot rv" style="margin:0"><div class="stars" aria-label="5 out of 5">' + STAR + STAR + STAR + STAR + STAR + '</div>' +
++        '<p>' + esc(r.text) + '</p>' +
++        (r.result ? '<span class="result"><i aria-hidden="true"></i>' + esc(r.result) + '</span>' : '') +
++        '<figcaption class="who-q"><i>' + (r.photo ? '<img src="' + esc(r.photo) + '" alt="" loading="lazy">' : esc(initials)) + '</i><div><b>' + esc(r.name) + '</b><small>' + esc(r.role || '') + '</small></div>' +
++        (r.link ? '<a href="' + esc(r.link) + '" target="_blank" rel="noopener">See the store ↗</a>' : '') + '</figcaption></figure>';
++    }).join('');
++    // Nav links to the new section (desktop + mobile), placed before "All Websites"
++    [document.querySelector('.links'), $('mmenu')].forEach(function (nav) {
++      if (!nav) return;
++      var a = document.createElement('a'); a.href = '#reviews'; a.textContent = 'Reviews';
++      var gal = nav.querySelector('[data-gallery]');
++      if (gal) nav.insertBefore(a, gal); else nav.appendChild(a);
++    });
++  }
++  // ---------- ADDED: result line on each project card ----------
++  document.querySelectorAll('.rail .card').forEach(function (c) {
++    var h = c.querySelector('h3'), title = h ? h.childNodes[0].textContent.trim() : '', r = RESULTS[title];
++    if (r && r.line) c.insertAdjacentHTML('beforeend', '<span class="win"><i aria-hidden="true"></i>' + esc(r.line) + '</span>');
++  });
++  // ---------- ADDED: WhatsApp button + social icon ----------
++  var WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5 0 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4l-.5-.3-1.8-.9c-.3-.1-.4-.1-.6.2l-.9 1.1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5Z"/></svg>';
++  var waDigits = String(CONFIG.whatsapp || '').replace(/\D/g, '');
++  function waLink(text) { return 'https://wa.me/' + waDigits + '?text=' + encodeURIComponent(text); }
++  if (waDigits) {
++    $('waFab').href = waLink(CONFIG.waText); $('waFab').hidden = false;
++    $('socials').insertAdjacentHTML('beforeend', '<a class="wa" href="' + esc(waLink(CONFIG.waText)) + '" target="_blank" rel="noopener" aria-label="WhatsApp">' + WA_ICON + '</a>');
++  } else { var sendTxt = $('leadSend').firstChild; if (sendTxt && sendTxt.nodeType === 3) sendTxt.nodeValue = 'Send my store link'; }
++  // ---------- ADDED: lead form ----------
++  $('leadForm').addEventListener('submit', function (e) {
++    e.preventDefault();
++    var f = e.target, sent = $('leadSent');
++    if (f.website.value) return; // bot filled the hidden field
++    if (!f.checkValidity()) { f.reportValidity(); return; }
++    var d = { name: f.name.value.trim(), phone: f.phone.value.trim(), store: f.store.value.trim(), spend: f.spend.value, need: f.need.value, message: f.message.value.trim(), source: location.href };
++    var lines = ['New store teardown request', 'Name: ' + d.name, 'WhatsApp: ' + d.phone, 'Store: ' + d.store, 'Monthly ad spend: ' + d.spend, 'Need: ' + d.need].concat(d.message ? ['Note: ' + d.message] : []);
++    function done(msg) { sent.textContent = msg; sent.classList.add('on'); }
++    if (CONFIG.formEndpoint) {
++      $('leadSend').disabled = true;
++      fetch(CONFIG.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(d) })
++        .then(function (r) { if (!r.ok) throw new Error(r.status); f.reset(); done('Got it, ' + d.name.split(' ')[0] + '. Your teardown lands on WhatsApp within 24 hours.'); })
++        .catch(function () { done('Could not send just now. Email ' + CONFIG.email + ' or use the WhatsApp button instead.'); })
++        .then(function () { $('leadSend').disabled = false; });
++    } else if (waDigits) {
++      window.open(waLink(lines.join('\n')), '_blank', 'noopener');
++      done('WhatsApp opened with your details. Press send there and the teardown is on its way.');
++    } else {
++      location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Store teardown request: ' + d.store) + '&body=' + encodeURIComponent(lines.join('\n'));
++      done('Your email app opened with the details. Hit send and I will reply within 24 hours.');
++    }
++  });
+   var logos = CLIENTS.map(function (c) { return '<img src="' + c[0] + '.webp" alt="' + esc(c[1]) + '" height="30" loading="lazy">'; }).join('');
+   $('logos').innerHTML = logos + logos.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"');
+ 
+@@ -1376,6 +1558,16 @@
+   $('mClose').addEventListener('click', closeProject);
+   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeProject(); });
+ 
++  // ---------- ADDED: results in the project details (runs after the details are filled) ----------
++  document.addEventListener('click', function (e) {
++    var b = e.target.closest('[data-p]'); if (!b) return;
++    var old = $('mDesc').parentNode.querySelector('.m-win'); if (old) old.remove();
++    var r = RESULTS[$('mTitle').textContent];
++    if (r && r.stats && r.stats.length) {
++      $('mDesc').insertAdjacentHTML('afterend', '<div class="m-win">' + r.stats.slice(0, 3).map(function (s) { return '<div><b>' + esc(s[0]) + '</b><span>' + esc(s[1]) + '</span></div>'; }).join('') + '</div>');
++    }
++  });
++
+   // ---------- Quick intro ----------
+   var SLIDES = [
+     { tag: 'Hello, I’m', title: 'Sameer', em: 'Saifi', text: 'Web developer and CRO expert. 4+ years of building Shopify stores that look premium, load fast and sell.', img: 'billboard.webp', pos: '50% 35%' },
