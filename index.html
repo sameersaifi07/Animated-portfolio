@@ -1009,7 +1009,12 @@ var RESULTS = {
 // photo is optional (a square jpg/webp in this folder). link = the live store, so a visitor can verify it.
 // Example: { text: 'Our checkout was leaking on mobile; Sameer rebuilt the product page and cart in 10 days and the difference showed in the first week.', name: 'Geetam Goyal', role: 'Founder, Baby Ninja', link: 'https://babyninja.in/', result: 'Launched in 10 days', photo: '' }
 var REVIEWS = [
-  { text: 'I run a performance marketing agency, so I judge a store by how it converts, not how it looks. Every store Sameer has built for our clients is mobile-first, fast, and planned around the checkout. He is the developer we send our brands to.', name: 'Omar Sikari', role: 'Founder, Adsalign', link: 'https://adsalign.io/', result: 'Agency partner since 2025', photo: '' }
+  // approved: true  = shows on the site.  approved: false = hidden until the client says "ok" to the text.
+  { approved: true,  text: 'I run a performance marketing agency, so I judge a store by how it converts, not how it looks. Every store Sameer has built for our clients is mobile-first, fast, and planned around the checkout. He is the developer we send our brands to.', name: 'Omar Sikari', role: 'Founder, Adsalign', link: 'https://adsalign.io/', result: 'Agency partner since 2025', photo: '' },
+  { approved: false, text: 'TapnTrust sells a product people have not seen before, so the store had to explain it in one scroll. Sameer nailed that: clean pages, fast on mobile, and the tap-to-review demo right where customers look. Orders started the week we went live.', name: 'Fahad', role: 'Founder, TapnTrust', link: 'https://tapntrust.in/', result: 'Orders in week one', photo: '' },
+  { approved: false, text: 'We needed a kids\u2019 store that felt playful but still pushed people to checkout. Sameer built it mobile-first with festive collections and a quick cart flow. Parents shop on their phones, and the store finally works the way they do.', name: 'Geetam Goyal', role: 'Founder, Baby Ninja', link: 'https://babyninja.in/', result: 'Mobile-first rebuild', photo: '' },
+  { approved: false, text: 'I wanted one page that pulls cricket and football fans into our Telegram channel. Sameer built it fast, kept it simple, and the one-tap join button does the job. Exactly what we asked for, delivered quickly.', name: 'Vivek', role: 'Founder, NJ Sports', link: 'https://nj-info.in/', result: 'Delivered in days', photo: '' },
+  { approved: false, text: 'Our busy books need parents to understand why before they buy. Sameer designed the product pages so every activity is explained clearly, and the store looks like a premium kids\u2019 brand. Clean work, on time.', name: 'Gaurav', role: 'Founder, Saekos', link: 'https://saekos.com/', result: 'Premium D2C store', photo: '' }
 ];
 
 // The new Reviews section joins every visitor order; the client view gets it right after the stores.
@@ -1113,9 +1118,10 @@ Object.keys(PROFILES).forEach(function (k) {
   }).join('');
   // ---------- ADDED: reviews ----------
   var STAR = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>';
-  if (REVIEWS.length) {
+  var LIVE_REVIEWS = REVIEWS.filter(function (r) { return r.approved !== false; });
+  if (LIVE_REVIEWS.length) {
     $('reviews').hidden = false;
-    $('quotes').innerHTML = REVIEWS.map(function (r) {
+    $('quotes').innerHTML = LIVE_REVIEWS.map(function (r) {
       var initials = String(r.name || '').split(/\s+/).map(function (w) { return w.charAt(0); }).join('').slice(0, 2).toUpperCase();
       return '<figure class="quote spot rv" style="margin:0"><div class="stars" aria-label="5 out of 5">' + STAR + STAR + STAR + STAR + STAR + '</div>' +
         '<p>' + esc(r.text) + '</p>' +
